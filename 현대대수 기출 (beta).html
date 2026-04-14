@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>현대대수학1 기출</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--pr:#3b5bdb;--prl:#e8ecfd;--border:#e2e5ef;--sub:#555770;--lbg:#f0fdf4;--lbd:#22c55e;--kbg:#fff8e1;--kbd:#ffc107;--r:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:#1a1a2e;font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;font-size:15px;line-height:1.8;}
+  header{background:var(--pr);color:#fff;padding:20px;text-align:center;}
+  header h1{font-size:1.25rem;font-weight:700;}
+  header p{font-size:0.78rem;opacity:.82;margin-top:4px;}
+
+  .tabs{overflow-x:auto;background:#fff;border-bottom:1px solid var(--border);display:flex;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+  .tabs::-webkit-scrollbar{height:3px;}
+  .tabs::-webkit-scrollbar-thumb{background:var(--pr);}
+  .tb{flex-shrink:0;padding:10px 13px;border:none;background:none;cursor:pointer;font-size:0.75rem;color:var(--sub);border-bottom:2.5px solid transparent;font-weight:500;transition:all .15s;}
+  .tb.on{color:var(--pr);border-bottom-color:var(--pr);font-weight:700;background:var(--prl);}
+  .tb:hover:not(.on){background:#f0f2ff;}
+
+  .wrap{max-width:800px;margin:0 auto;padding:18px 14px 60px;}
+  .pn{display:none;}.pn.on{display:block;}
+
+  .rbadge{display:inline-flex;align-items:center;gap:6px;background:var(--pr);color:#fff;border-radius:20px;padding:3px 13px;font-size:0.76rem;font-weight:700;margin-bottom:10px;}
+  .chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+  .chip{border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:700;}
+  .chip25{background:#fce7f3;color:#be185d;}
+  .chip24{background:#ede9fe;color:#6d28d9;}
+  .chip23{background:#d1fae5;color:#065f46;}
+  .chip22{background:#fef3c7;color:#92400e;}
+  .chip21{background:#dbeafe;color:#1e40af;}
+
+  .card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px;box-shadow:0 2px 10px rgba(59,91,219,.06);}
+  .ctitle{font-size:.98rem;font-weight:700;color:var(--pr);margin-bottom:10px;}
+  .plabel{font-size:.69rem;font-weight:700;color:var(--pr);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+  .pbox{background:#f9f9fc;border-left:3px solid var(--pr);border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:11px;font-size:.92rem;}
+
+  .tog{width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--prl);border:1px solid var(--border);border-radius:8px;padding:9px 13px;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--pr);margin-bottom:3px;transition:background .15s;}
+  .tog:hover{background:#dce3fb;}
+  .ti{transition:transform .2s;}
+  .tog.open .ti{transform:rotate(180deg);}
+  .tc{display:none;margin-top:5px;margin-bottom:7px;}
+  .tc.open{display:block;}
+
+  .lemma{background:var(--lbg);border:1px solid var(--lbd);border-radius:8px;padding:12px 14px;margin-bottom:8px;}
+  .ltitle{font-size:.73rem;font-weight:700;color:#15803d;margin-bottom:5px;}
+  .sbox{background:#f8f9ff;border:1px solid var(--border);border-radius:8px;padding:14px;}
+  .step{margin-bottom:11px;}
+  .sh{font-size:.78rem;font-weight:700;color:var(--pr);display:flex;align-items:center;gap:5px;margin-bottom:3px;}
+  .sn{background:var(--pr);color:#fff;width:19px;height:19px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.67rem;flex-shrink:0;}
+  .sb{padding-left:24px;font-size:.9rem;}
+  hr.s{border:none;border-top:1px dashed var(--border);margin:10px 0;}
+
+  .kbox{background:var(--kbg);border:1px solid var(--kbd);border-radius:8px;padding:12px 14px;}
+  .ktitle{font-size:.73rem;font-weight:700;color:#92400e;margin-bottom:7px;}
+  .kl{list-style:none;}
+  .kl li{padding:2px 0 2px 17px;position:relative;font-size:.88rem;}
+  .kl li::before{content:'⚑';position:absolute;left:0;color:#f59e0b;font-size:.7rem;top:5px;}
+
+  .katex-display{overflow-x:auto;padding:4px 0;}
+  strong{color:#1e3a8a;}
+</style>
+</head>
+<body>
+<header>
+  <h1>📐 현대대수학1 기출 문제집</h1>
+  <p>2021~2025 실제 중간고사 기출 · 빈도순 · 연도별 색상 구분</p>
+</header>
+<div class="tabs" id="TB"></div>
+<div class="wrap" id="WR"></div>
+
+<script>
+const D=[
+{
+  rank:1, title:"∩Hᵢ 부분군 증명",
+  src:[["2025 Q7 [3점]","25"],["2024 Q7 [3점]","24"],["2023 Q4 [3점]","23"],["2022 Q5 [3점]","22"],["2021 Q5 [3점]","21"]],
+  prob:`군 $G$와 임의의 첨자집합 $I\\ (I\\neq\\emptyset)$, 각 $i\\in I$에 대하여 $H_i$를 $G$의 부분군이라 하자. $H=\\bigcap_{i\\in I}H_i$라 할 때, $H$가 $G$의 부분군임을 보이시오.`,
+  lemmas:[],
+  steps:[
+    {t:"단위원 존재",b:`$G$의 항등원을 $e$라 하자. 부분군의 정의에 의해 $\\forall i\\in I$에 대해 $H_i\\leq G$이므로 $e\\in H_i$. 이는 모든 $i\\in I$에 대해 성립하므로 $e\\in\\bigcap_{i\\in I}H_i=H$. 항등원 존재.`},
+    {t:"연산에 닫혀있음",b:`$\\forall a,b\\in H$이면, $\\forall i\\in I$에 대해 $a,b\\in H_i$. $H_i\\leq G$이므로 $ab\\in H_i$. 이는 모든 $i\\in I$에 대해 성립하므로 $ab\\in\\bigcap_{i\\in I}H_i=H$.`},
+    {t:"역원 존재",b:`$a\\in H$이면, $\\forall i\\in I$에 대해 $a\\in H_i$. $H_i\\leq G$이므로 $a^{-1}\\in H_i$. 이는 모든 $i\\in I$에 대해 성립하므로 $a^{-1}\\in\\bigcap_{i\\in I}H_i=H$. 역원 존재.`},
+    {t:"결론",b:`①②③에 의해 $H\\leq G$. $\\square$<br><br><em style="font-size:.82rem;color:var(--sub)">(모든 이유는 $\\forall i\\in I$, $H_i\\leq G$)</em>`}
+  ],
+  keys:["5년 연속 출제 — 가장 확실한 점수원","결합법칙은 $G$에서 상속되므로 따로 증명 불필요","단위원→닫힘→역원 순서 고정","2025년에도 동일하게 출제 (Q7, 3점)"]
+},
+{
+  rank:2, title:"순환군 보조정리 세트 (i~iii)",
+  src:[["2025 Q6 (i~iii) [9점]","25"],["2024 Q4 (i~iv) [12점]","24"],["2023 Q7 [6점]","23"],["2022 Q8 [6점]","22"]],
+  prob:`유한군 $G$는 $a$로 생성되는 위수가 $n$인 순환군이다. 다음을 증명하시오.<br>
+(i) $n=\\min\\{k\\mid k\\text{는 정수},\\ k>0,\\ a^k=e\\}$임을 보이시오.<br>
+(ii) 정수 $s$에 대하여 부분군 $\\langle a^s\\rangle$의 위수를 풀이과정과 함께 쓰시오.<br>
+(iii) $G$의 부분군 $H$와 $K$에 대하여 $|H|=|K|$이면 $H=K$임을 보이시오. <span style="font-size:.82rem">(2025년 기준)</span>`,
+  lemmas:[
+    {id:"보조정리 1",title:"$G=\\langle a\\rangle$일 때 다음 세 가지는 동치",body:`
+    (1) $|G|=\\infty$<br>
+    (2) $a^m=e\\Leftrightarrow m=0$<br>
+    (3) $a^i=a^j\\Leftrightarrow i=j$<br><br>
+    <strong>증명 (2)⇒(1):</strong> $0\\neq m\\in\\mathbb{Z}$가 존재하여 $a^m=e$라 하자. $a^{-m}=(a^m)^{-1}=e$이므로 $m>0$이라 가정해도 된다. $\\forall g\\in G=\\langle a\\rangle$는 적당한 정수 $k$가 존재하여 $g=a^k$이다. 나눗셈 알고리즘에 의해 $k=qm+r\\ (0\\leq r<m)$이면, $a^k=(a^m)^q\\cdot a^r=e\\cdot a^r=a^r$. 따라서 $G=\\{e,a,a^2,\\ldots,a^{m-1}\\}$이고 $|G|\\leq m<\\infty$ (모순).<br><br>
+    <strong>(2)⇒(3):</strong> $a^i=a^j\\Leftrightarrow a^{i-j}=e\\Leftrightarrow i-j=0\\Leftrightarrow i=j$.<br><br>
+    <strong>(3)⇒(1):</strong> (3)에 의해 $i\\neq j\\Rightarrow a^i\\neq a^j$이므로 $G=\\{a^n\\mid n\\in\\mathbb{Z}\\}$의 원소는 무한히 많아 $|G|=\\infty$. $\\square$`}
+  ],
+  steps:[
+    {t:"(i) $n$의 최솟값 특성 증명",b:`$|G|=n<\\infty$이므로 보조정리 1의 (1)이 성립하지 않는다.<br>따라서 (2)도 성립하지 않으므로 $a^m=e$인 $m\\neq 0$이 존재한다.<br><br>$S=\\{k\\in\\mathbb{Z}^+\\mid a^k=e\\}$는 정수의 정렬성에 의해 최솟값을 가진다. 이를 $m$이라 하자.<br><br>나눗셈 알고리즘에 의해 임의의 $n\\in\\mathbb{Z}$에 대해 $n=qm+r\\ (0\\leq r<m)$이면,<br>$a^n=a^{qm+r}=(a^m)^q\\cdot a^r=e\\cdot a^r=a^r$.<br><br>따라서 $G=\\{e,a,a^2,\\ldots,a^{m-1}\\}$이고 $|G|=m<\\infty$. 그런데 $|G|=n$이므로 $n=m$. $\\square$`},
+    {t:"(ii) $|\\langle a^s\\rangle|=n/\\gcd(n,s)$ 증명",b:`$b=a^s\\in G$, $d=\\gcd(n,s)$, $m=\\min\\{k\\in\\mathbb{Z}^+\\mid b^k=e\\}$라 하자.<br><br>$\\exists n_1,s_1\\in\\mathbb{Z}$ s.t. $n=n_1d$, $s=s_1d$, $\\gcd(n_1,s_1)=1$.<br><br><strong>① $n_1\\leq m$ (하계):</strong><br>$b^m=(a^s)^m=e$이므로 $n\\mid sm$.<br>$n_1d\\mid s_1d\\cdot m\\Rightarrow n_1\\mid s_1m$. $\\gcd(n_1,s_1)=1$이므로 $n_1\\mid m$. $\\therefore n_1\\leq m$.<br><br><strong>② $m\\leq n_1$ (상계):</strong><br>$b^{n_1}=(a^s)^{n_1}=(a^{ds_1})^{n_1}=(a^n)^{s_1}=e^{s_1}=e$.<br>$m$의 최솟값에 의해 $m\\leq n_1$.<br><br><strong>①②에 의해</strong> $m=n_1=\\dfrac{n}{d}=\\dfrac{n}{\\gcd(n,s)}$.<br>따라서 $|\\langle a^s\\rangle|=\\dfrac{n}{\\gcd(n,s)}$. $\\square$`},
+    {t:"(iii) $|H|=|K|\\Rightarrow H=K$ (2025 Q6(iii))",b:`$G=\\langle a\\rangle$이 위수 $n$인 순환군이므로 $G\\cong(\\mathbb{Z}_n,+_n)$.<br><br>$H,K\\leq G$이면 순환군의 부분군은 순환군이므로<br>$H=\\langle a^s\\rangle$, $K=\\langle a^t\\rangle$인 $s,t$가 존재한다.<br><br>$|H|=|K|$이면 (ii)에 의해 $\\dfrac{n}{\\gcd(n,s)}=\\dfrac{n}{\\gcd(n,t)}$이므로 $\\gcd(n,s)=\\gcd(n,t)=d$.<br><br>$m\\in\\langle d\\rangle$이면 $\\langle m\\rangle\\subseteq\\langle d\\rangle$이고, $|\\langle m\\rangle|=|\\langle d\\rangle|<\\infty$이므로 $\\langle m\\rangle=\\langle d\\rangle$.<br>따라서 $H=\\langle a^s\\rangle=\\langle a^d\\rangle=\\langle a^t\\rangle=K$. $\\square$`}
+  ],
+  keys:["보조정리 1 먼저 증명, 이후 (i)에서 인용 — 이 흐름이 필기본 스타일","(ii)에서 ① $n_1\\leq m$ (나눗셈 논리) + ② $m\\leq n_1$ (직접 계산) 양방향","2025년엔 (i~iii), 2024년엔 (i~iv, 부분군 개수 포함) — 구별 필요","배점 합계 9~12점 — 이 문제가 시험 승부처"]
+},
+{
+  rank:3, title:"순환군의 부분군은 순환군",
+  src:[["2025 Q5 [3점]","25"],["2023 Q5 [4점]","23"],["2022 Q6 [3점]","22"],["2021 Q5(일부)","21"]],
+  prob:`순환군의 부분군이 순환군임을 보이시오.`,
+  lemmas:[
+    {id:"보조정리 3",title:"$G=\\langle a\\rangle$이고 $|G|=n<\\infty$이면 $a^m=e\\Leftrightarrow n\\mid m$",body:`<strong>(⇒)</strong> 나눗셈 알고리즘에 의해 $m=nq+r\\ (0\\leq r<n)$이면, $e=a^m=a^{nq+r}=(a^n)^q\\cdot a^r=e\\cdot a^r=a^r$. (i)에 의해 $r$은 최소이므로 $r=0$. $\\therefore n\\mid m$.<br><br><strong>(⇐)</strong> $n\\mid m$이면 $\\exists k\\in\\mathbb{Z}$, $m=nk$. $a^m=a^{nk}=(a^n)^k=e^k=e$. $\\square$`}
+  ],
+  steps:[
+    {t:"설정",b:`$G=\\langle a\\rangle$이라 하고 $H\\leq G$임을 가정.<br>$H=\\{e\\}$이면 $H=\\langle e\\rangle$으로 자명한 순환군. 이하 $H\\neq\\{e\\}$로 가정.`},
+    {t:"최솟값 원소 선택",b:`$H\\neq\\{e\\}$이므로 $H$에는 $e$가 아닌 원소가 있다. $H\\leq G=\\langle a\\rangle$이므로 이 원소는 $a^n\\ (n\\neq 0)$ 꼴이다.<br>$a^{-n}=(a^n)^{-1}\\in H$이므로 양의 지수를 가진 원소가 존재.<br>정수의 정렬성에 의해 $S=\\{k\\in\\mathbb{Z}^+\\mid a^k\\in H\\}$는 최솟값을 가진다. 이를 $m$이라 하자.`},
+    {t:"$\\langle a^m\\rangle=H$ 증명",b:`<strong>(⊆)</strong> $a^m\\in H$이고 $H$는 군이므로 $\\langle a^m\\rangle\\subseteq H$.<br><br><strong>(⊇)</strong> 임의의 $h\\in H$에 대해 $h\\in G=\\langle a\\rangle$이므로 $h=a^k$인 정수 $k$ 존재.<br>나눗셈 알고리즘에 의해 $k=qm+r\\ (0\\leq r<m)$이면,<br>$a^r=a^{k-qm}=a^k\\cdot(a^m)^{-q}=h\\cdot(a^m)^{-q}\\in H$.<br>$m$의 최솟값 정의에 의해 $r=0$. 따라서 $m\\mid k$, 즉 $h=a^k\\in\\langle a^m\\rangle$.<br><br>(⊆)(⊇)에 의해 $H=\\langle a^m\\rangle$이므로 $H$는 순환군. $\\square$`}
+  ],
+  keys:["'정수의 정렬성으로 최솟값 $m$ 존재' 문장 필수","나눗셈 알고리즘 → $r=0$ 유도가 핵심 논리","2025년 Q5는 3점, 증명 흐름 간결하게","⊆ 방향(쉬운 것) 먼저, ⊇ 방향에서 $r=0$ 유도"]
+},
+{
+  rank:4, title:"새로운 연산으로 Abel군 증명",
+  src:[["2025 Q1 [4점] ($a*b=ab/2$)","25"],["2024 Q2 ($a*b=a+b-ab$)","24"],["2023 Q2 ($a*b=a+b-2$)","23"],["2022 Q2 ($a*b=a+b-1$)","22"]],
+  prob:`양의 유리수 집합 $\\mathbb{Q}^+$ 위에 연산 $*$를 $a*b=\\dfrac{ab}{2}$로 정의하자. $(\\mathbb{Q}^+,*)$가 Abel 군임을 보이시오. <span style="font-size:.82rem">(2025 Q1)</span>`,
+  lemmas:[],
+  steps:[
+    {t:"(1) 닫혀있음",b:`$\\forall a,b\\in\\mathbb{Q}^+$에 대해 $a*b=\\dfrac{ab}{2}\\in\\mathbb{Q}^+$이므로 연산에 닫혀있다.`},
+    {t:"(2) 가환법칙",b:`$\\forall a,b\\in\\mathbb{Q}^+$에 대해 $a*b=\\dfrac{ab}{2}=\\dfrac{ba}{2}=b*a$이므로 가환.`},
+    {t:"(3) 결합법칙",b:`$(a*b)*c=\\dfrac{ab}{2}*c=\\dfrac{\\frac{ab}{2}\\cdot c}{2}=\\dfrac{abc}{4}$.<br>$a*(b*c)=a*\\dfrac{bc}{2}=\\dfrac{a\\cdot\\frac{bc}{2}}{2}=\\dfrac{abc}{4}$.<br>$(a*b)*c=a*(b*c)$이므로 결합법칙 성립.`},
+    {t:"(4) 항등원",b:`$\\forall a\\in\\mathbb{Q}^+$, $\\exists\\ 2\\in\\mathbb{Q}^+$이고 $a*2=\\dfrac{a\\cdot 2}{2}=a=2*a$. 항등원은 $2$.`},
+    {t:"(5) 역원",b:`$\\forall a\\in\\mathbb{Q}^+$, $\\exists\\ \\dfrac{4}{a}\\in\\mathbb{Q}^+$이고 $a*\\dfrac{4}{a}=\\dfrac{a\\cdot\\frac{4}{a}}{2}=\\dfrac{4}{2}=2$. 모든 원소에 대한 역원 존재.`},
+    {t:"결론",b:`(1)~(5)에 의해 $(\\mathbb{Q}^+,*)$는 Abel 군. $\\square$`}
+  ],
+  keys:["항등원은 $a*e=a$로 놓고 $e$를 직접 풀어서 구하기 → $e=2$","역원: $a*x=2$ (항등원)로 놓고 $x=4/a$ 도출","매년 연산이 바뀜 — 항등원·역원 계산법은 동일한 패턴","2024년 $G=\\{x\\in\\mathbb{Q}\\mid x\\neq 1\\}$, $a*b=a+b-ab$는 동형사상도 같이 출제"]
+},
+{
+  rank:5, title:"$U_n$ 순환군 증명",
+  src:[["2024 Q1 ($U_{2024}$)","24"],["2023 Q6 [3점]","23"],["2022 Q7 [3점]","22"]],
+  prob:`임의의 정수 $n\\geq 1$에 대하여 $U_n=\\{z\\in\\mathbb{C}\\mid z^n=1\\}$이라 하자. $U_n$이 곱셈에 대하여 순환군임을 보이시오. (단, $\\mathbb{C}$는 복소수 집합이다.)`,
+  lemmas:[],
+  steps:[
+    {t:"생성원 제시",b:`$\\zeta=e^{\\frac{2\\pi i}{n}}$이라 하자. $\\zeta^n=\\left(e^{\\frac{2\\pi i}{n}}\\right)^n=e^{2\\pi i}=1$이므로 $\\zeta\\in U_n$.`},
+    {t:"원소 확인",b:`$m=0,1,2,\\ldots,n-1$에 대하여 $\\zeta^m$도 $U_n$의 원소이다.<br>($\\because (\\zeta^m)^n=(\\zeta^n)^m=1^m=1$)<br>또한 이 원소들은 서로 다른 $n$개. 즉 $\\{\\zeta^0,\\zeta^1,\\ldots,\\zeta^{n-1}\\}=U_n$.`},
+    {t:"결론",b:`$U_n=\\langle\\zeta\\rangle$이므로 $U_n$은 순환군이고, 곱셈에 대해 닫혀있다. $\\square$<br><br>또한 $\\mathbb{Z}_n\\cong U_n$ ($\\varphi: k\\mapsto\\zeta^k$는 동형사상).`}
+  ],
+  keys:["생성원 $\\zeta=e^{2\\pi i/n}$ 명시가 핵심 첫 번째 단계","2024년에는 $U_{2024}$로 구체적인 $n$ 주어짐 — 증명 구조 동일","군임도 간단히 확인 요구할 경우: 닫힘·단위원·역원 3줄로 처리"]
+},
+{
+  rank:6, title:"조건 3개 부분군 판정",
+  src:[["2025 Q5 [3점]","25"],["2024 Q5 [4점]","24"]],
+  prob:`군 $G$의 부분집합 $H$가 다음 조건을 만족한다.<br>
+(i) $H$가 $G$의 이항연산 아래 닫혀있다.<br>
+(ii) $G$의 항등원이 $H$에 속한다.<br>
+(iii) 모든 $a\\in H$에 대하여 $a^{-1}\\in H$이다.<br>
+$H$가 $G$의 부분군임을 보이시오.`,
+  lemmas:[],
+  steps:[
+    {t:"조건 1: 이항연산에 닫혀있음",b:`조건 (i)에 의해 $\\forall a,b\\in H$에 대해 $ab\\in H$이므로 $*$는 $H$의 이항연산이다.`},
+    {t:"조건 2: 결합법칙",b:`$H\\subseteq G$이고 $G$의 연산에서 결합법칙이 성립하므로 $H$에서도 상속된다.`},
+    {t:"조건 3: 항등원 존재",b:`조건 (ii)에 의해 $G$의 항등원 $e\\in H$. 항등원 존재.`},
+    {t:"조건 4: 역원 존재",b:`조건 (iii)에 의해 $\\forall a\\in H$에 대해 $a^{-1}\\in H$. 역원 존재.`},
+    {t:"결론",b:`(i)~(iii) 및 결합법칙에 의해 $H\\leq G$. $\\square$`}
+  ],
+  keys:["조건 (i)(ii)(iii) 번호 그대로 대응시켜 명시","결합법칙은 '$G$에서 상속'이라는 이유 한 줄 필수","2025 Q5(3점)와 2024 Q5(4점) — 배점만 다르고 문제 동일"]
+},
+{
+  rank:7, title:"$HK$가 Abel군에서 부분군",
+  src:[["2025 Q4 [4점]","25"]],
+  prob:`$H$와 $K$는 Abel 군 $G$의 부분군이다. $HK=\\{xy\\mid x\\in H,\\ y\\in K\\}$라 할 때, $HK$가 $G$의 부분군임을 보이시오.`,
+  lemmas:[],
+  steps:[
+    {t:"단위원 존재",b:`$H\\leq G$, $K\\leq G$이므로 $G$의 항등원 $e\\in H$이고 $e\\in K$. 따라서 $e=e\\cdot e\\in HK$.`},
+    {t:"연산에 닫혀있음",b:`$\\forall x_1y_1,\\ x_2y_2\\in HK$ ($x_1,x_2\\in H$, $y_1,y_2\\in K$)에 대해:<br>$(x_1y_1)(x_2y_2)=x_1(y_1x_2)y_2$.<br>$G$가 Abel군이므로 $y_1x_2=x_2y_1$.<br>$(x_1y_1)(x_2y_2)=(x_1x_2)(y_1y_2)\\in HK$<br>($\\because\\ x_1x_2\\in H$, $y_1y_2\\in K$).`},
+    {t:"역원 존재",b:`$\\forall xy\\in HK$에 대해 $(xy)^{-1}=y^{-1}x^{-1}$.<br>$G$가 Abel군이므로 $y^{-1}x^{-1}=x^{-1}y^{-1}$.<br>$x^{-1}\\in H$, $y^{-1}\\in K$이므로 $(xy)^{-1}=x^{-1}y^{-1}\\in HK$. 역원 존재.`},
+    {t:"결론",b:`$HK\\leq G$. $\\square$`}
+  ],
+  keys:["Abel(가환) 조건을 닫힘과 역원 두 곳에서 명시 사용","$(xy)^{-1}=y^{-1}x^{-1}$에서 Abel 조건으로 $x^{-1}y^{-1}$로 바꾸는 게 핵심","비Abel군에서는 $H$ 또는 $K$가 정규부분군이어야 함","2025년 Q4 (4점) 단독 출제"]
+},
+{
+  rank:8, title:"복소수 방정식 (근 구하기)",
+  src:[["2025 Q2 [4점] ($z^4=-4$)","25"],["2023 Q8 [3점] ($z^8=256$)","23"],["2022 Q11 [3점] ($z^4=-16$)","22"],["2021 Q9 [3점] ($z^6=-64$)","21"]],
+  prob:`방정식 $z^4=-4$의 복소수 근을 모두 구하시오. (2025 Q2)`,
+  lemmas:[],
+  steps:[
+    {t:"극형식 표현",b:`$z=|z|e^{i\\theta}$로 하면 $z^4=|z|^4e^{i4\\theta}$.<br>$-4=4e^{i\\pi}$ (∵ $|-4|=4$, 편각 $\\pi$).`},
+    {t:"크기와 편각 분리",b:`$|z|^4=4\\Rightarrow|z|^2=2\\Rightarrow|z|=\\sqrt{2}$.<br><br>$\\cos 4\\theta+i\\sin 4\\theta=-1+0i$이므로<br>$4\\theta=\\pi+2n\\pi\\ (n=0,1,2,3)$<br>$\\therefore\\theta=\\dfrac{\\pi+2n\\pi}{4}$ $(n=0,1,2,3)$`},
+    {t:"각각의 근 계산",b:`$n=0$: $\\theta=\\dfrac{\\pi}{4}$, $z=\\sqrt{2}\\left(\\dfrac{\\sqrt{2}}{2}+\\dfrac{\\sqrt{2}}{2}i\\right)=1+i$<br><br>$n=1$: $\\theta=\\dfrac{3\\pi}{4}$, $z=\\sqrt{2}\\left(-\\dfrac{\\sqrt{2}}{2}+\\dfrac{\\sqrt{2}}{2}i\\right)=-1+i$<br><br>$n=2$: $\\theta=\\dfrac{5\\pi}{4}$, $z=\\sqrt{2}\\left(-\\dfrac{\\sqrt{2}}{2}-\\dfrac{\\sqrt{2}}{2}i\\right)=-1-i$<br><br>$n=3$: $\\theta=\\dfrac{7\\pi}{4}$, $z=\\sqrt{2}\\left(\\dfrac{\\sqrt{2}}{2}-\\dfrac{\\sqrt{2}}{2}i\\right)=1-i$`},
+    {t:"결론",b:`$z=1+i,\\ -1+i,\\ -1-i,\\ 1-i$ (4개). $\\square$<br><br><em style="font-size:.82rem;color:#b91c1c">⚠️ 2025년 답안지 주석: "자리 수 쓰시오! 풀이과정 없으면 0점"</em>`}
+  ],
+  keys:["$n=0,1,2,3$ 4개 모두 쓰기 — 하나라도 빠지면 감점","자리 수(풀이과정) 필수 — 2025년 답안에 명시","매년 방정식이 바뀜: $z^6=-64$(21), $z^4=-16$(22), $z^8=256$(23), $z^4=-4$(25)","$-4=4e^{i\\pi}$ 극형식 변환이 첫 단계"]
+},
+{
+  rank:9, title:"$D_4$ 원소 나열 (이면체군)",
+  src:[["2025 Q3 [5점]","25"],["2021 Q2 ($D_4$ 부분군 도표)","21"]],
+  prob:`이면체군(dihedral group) $D_4$의 원소를 서로 소인 순열치환의 곱으로 나타내시오. (2025 Q3)`,
+  lemmas:[],
+  steps:[
+    {t:"$D_4$ 원소 목록 ($|D_4|=8$)",b:`$D_4=\\{\\rho_0,\\rho_1,\\rho_2,\\rho_3,\\mu_1,\\mu_2,\\delta_1,\\delta_2\\}$<br><br>꼭짓점: 1→우상, 2→좌상, 3→좌하, 4→우하<br><br>
+$\\rho_0=\\begin{pmatrix}1&2&3&4\\\\1&2&3&4\\end{pmatrix},\\quad$
+$\\rho_1=\\begin{pmatrix}1&2&3&4\\\\2&3&4&1\\end{pmatrix}$<br><br>
+$\\rho_2=\\begin{pmatrix}1&2&3&4\\\\3&4&1&2\\end{pmatrix},\\quad$
+$\\rho_3=\\begin{pmatrix}1&2&3&4\\\\4&1&2&3\\end{pmatrix}$<br><br>
+$\\mu_1=\\begin{pmatrix}1&2&3&4\\\\2&1&4&3\\end{pmatrix},\\quad$
+$\\mu_2=\\begin{pmatrix}1&2&3&4\\\\4&3&2&1\\end{pmatrix}$<br><br>
+$\\delta_1=\\begin{pmatrix}1&2&3&4\\\\1&4&3&2\\end{pmatrix},\\quad$
+$\\delta_2=\\begin{pmatrix}1&2&3&4\\\\3&2&1&4\\end{pmatrix}$`},
+    {t:"소인 순열치환의 곱으로 표현",b:`$\\rho_0=e$ (항등원)<br>
+$\\rho_1=(1\\;2\\;3\\;4)$<br>
+$\\rho_2=(1\\;3)(2\\;4)$<br>
+$\\rho_3=(1\\;4\\;3\\;2)$<br>
+$\\mu_1=(1\\;2)(3\\;4)$<br>
+$\\mu_2=(1\\;4)(2\\;3)$<br>
+$\\delta_1=(2\\;4)$<br>
+$\\delta_2=(1\\;3)$`},
+    {t:"검증 예시",b:`관계식: $\\rho_1^4=e$, $\\delta_1^2=e$, $\\delta_1\\rho_1=\\rho_1^{-1}\\delta_1$.<br>예: $\\rho_0\\cdot\\mu_1=\\mu_1$.`}
+  ],
+  keys:["2025년 Q3 배점 5점 — 원소 8개 + 소인 표현 모두 정확해야","$\\rho_2=(1\\;3)(2\\;4)$처럼 서로소 순환의 곱으로 표현","회전 4개($\\rho$) + 반사 4개($\\mu,\\delta$) 구성","필기본의 $D_4$ 표기와 일치: $\\rho_0,\\rho_1,\\rho_2,\\rho_3,\\mu_1,\\mu_2,\\delta_1,\\delta_2$"]
+},
+{
+  rank:10, title:"$\\mathbb{Z}_{pq}$ 자기동형사상 개수",
+  src:[["2024 Q8 [3점]","24"]],
+  prob:`서로 다른 두 소수 $p,q$에 대하여 순환군 $\\mathbb{Z}_{pq}$에서 $\\mathbb{Z}_{pq}$로의 동형사상의 개수를 구하시오.`,
+  lemmas:[
+    {id:"보조정리",title:"$\\text{Aut}(\\mathbb{Z}_n)$의 크기",body:`$\\mathbb{Z}_n=\\langle 1\\rangle$이므로 자기동형사상 $\\varphi:\\mathbb{Z}_n\\to\\mathbb{Z}_n$은 $\\varphi(1)$에 의해 완전히 결정된다. $\\varphi$가 동형사상 $\\Leftrightarrow$ $\\varphi(1)$이 $\\mathbb{Z}_n$의 생성원 $\\Leftrightarrow$ $\\gcd(\\varphi(1),n)=1$. 따라서 $|\\text{Aut}(\\mathbb{Z}_n)|=\\phi(n)$.`}
+  ],
+  steps:[
+    {t:"$\\mathbb{Z}_{pq}$ 구조 확인",b:`$\\gcd(p,q)=1$ ($p,q$는 서로 다른 소수). $\\mathbb{Z}_{pq}$는 순환군.`},
+    {t:"자기동형사상 수 계산",b:`보조정리에 의해 $|\\text{Aut}(\\mathbb{Z}_{pq})|=\\phi(pq)$.<br>$p,q$ 서로소이므로 $\\phi(pq)=\\phi(p)\\phi(q)=(p-1)(q-1)$.`},
+    {t:"결론",b:`동형사상의 수는 $\\phi(pq)=(p-1)(q-1)$개. $\\square$`}
+  ],
+  keys:["$\\gcd(p,q)=1$ 명시 필수 (서로 다른 소수이므로)","생성원의 수 $=\\phi(pq)=(p-1)(q-1)$ 공식","2024년 Q8 (3점) 단독 출제"]
+}
+];
+
+const TB=document.getElementById('TB'),WR=document.getElementById('WR');
+const yrcls={'25':'chip25','24':'chip24','23':'chip23','22':'chip22','21':'chip21'};
+
+D.forEach((p,i)=>{
+  const btn=document.createElement('button');
+  btn.className='tb'+(i===0?' on':'');
+  btn.innerHTML=`<b>#${p.rank}</b>&nbsp;${p.title.split(' ')[0]}`;
+  btn.onclick=()=>{
+    document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.pn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    document.getElementById('p'+i).classList.add('on');
+    renderMath();
+  };
+  TB.appendChild(btn);
+
+  const pn=document.createElement('div');
+  pn.className='pn'+(i===0?' on':'');
+  pn.id='p'+i;
+
+  const chips=p.src.map(([s,y])=>`<span class="chip ${yrcls[y]||'chip21'}">📌 ${s}</span>`).join('');
+  const lemH=p.lemmas.map(l=>`<div class="lemma"><div class="ltitle">📗 ${l.id}: ${l.title}</div><div style="font-size:.88rem">${l.body}</div></div>`).join('');
+  const stpH=p.steps.map((s,si)=>`<div class="step"><div class="sh"><span class="sn">${si+1}</span>${s.t}</div><div class="sb">${s.b}</div></div>${si<p.steps.length-1?'<hr class="s">':''}`).join('');
+  const keyH=p.keys.map(k=>`<li>${k}</li>`).join('');
+
+  pn.innerHTML=`
+    <div class="rbadge">🏆 빈도 ${p.rank}위</div>
+    <div class="chips">${chips}</div>
+    <div class="card">
+      <div class="ctitle">${p.title}</div>
+      <div class="plabel">📝 문제 원문</div>
+      <div class="pbox">${p.prob}</div>
+      ${lemH?`<button class="tog" onclick="tog(this)">📗 보조정리 <span class="ti">▼</span></button><div class="tc"><div class="sbox">${lemH}</div></div>`:''}
+      <button class="tog" onclick="tog(this)">✏️ 풀이 보기 <span class="ti">▼</span></button>
+      <div class="tc"><div class="sbox">${stpH}</div></div>
+      <button class="tog" onclick="tog(this)">⚑ 핵심 포인트 <span class="ti">▼</span></button>
+      <div class="tc"><div class="kbox"><div class="ktitle">시험에서 놓치기 쉬운 포인트</div><ul class="kl">${keyH}</ul></div></div>
+    </div>`;
+  WR.appendChild(pn);
+});
+
+function tog(b){b.classList.toggle('open');b.nextElementSibling.classList.toggle('open');renderMath();}
+function renderMath(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+renderMath();
+</script>
+</body>
+</html>
