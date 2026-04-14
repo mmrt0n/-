@@ -67,7 +67,7 @@ hr.s{border:none;border-top:1px dashed var(--border);margin:10px 0;}
 <header>
   <div class="ini">mmrt</div>
   <h1>📐 현대대수학1 기출 문제집</h1>
-  <p>2021~2025 실제 중간고사 기출 · 빈도순 · 필기본 기준 검증</p>
+  <p>빈출모음</p>
 </header>
 <div class="tabs" id="TB"></div>
 <div class="wrap" id="WR"></div>
@@ -374,7 +374,7 @@ var WR=document.getElementById("WR");
 D.forEach(function(p,i){
   var btn=document.createElement("button");
   btn.className="tb"+(i===0?" on":"");
-  btn.innerHTML="<b>#"+p.rank+"</b>&nbsp;"+p.title.replace(/\\[^)]*\)/g,"").split(" ")[0];
+  btn.innerHTML="<b>#"+p.rank+"</b>&nbsp;"+p.title.replace(/\\(\(.*?\)|\[.*?\])/g,"").replace(/\s+/g," ").trim().split(" ").slice(0,2).join(" ");
   btn.onclick=function(){
     document.querySelectorAll(".tb").forEach(function(b){b.classList.remove("on");});
     document.querySelectorAll(".pn").forEach(function(b){b.classList.remove("on");});
