@@ -3,427 +3,845 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>현대대수학1 기출</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<title>Football Match Predictor</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-:root{--bg:#f7f8fa;--card:#fff;--pr:#3b5bdb;--prl:#e8ecfd;--border:#e2e5ef;--sub:#555770;--lbg:#f0fdf4;--lbd:#22c55e;--kbg:#fff8e1;--kbd:#ffc107;--r:12px;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:#1a1a2e;font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;font-size:15px;line-height:1.85;}
-header{background:var(--pr);color:#fff;padding:20px;text-align:center;}
-header .ini{font-size:0.7rem;opacity:0.5;letter-spacing:2px;margin-bottom:6px;}
-header h1{font-size:1.25rem;font-weight:700;}
-header p{font-size:0.78rem;opacity:.82;margin-top:4px;}
-.tabs{overflow-x:auto;background:#fff;border-bottom:1px solid var(--border);display:flex;white-space:nowrap;-webkit-overflow-scrolling:touch;}
-.tabs::-webkit-scrollbar{height:3px;}
-.tabs::-webkit-scrollbar-thumb{background:var(--pr);}
-.tb{flex-shrink:0;padding:10px 13px;border:none;background:none;cursor:pointer;font-size:0.75rem;color:var(--sub);border-bottom:2.5px solid transparent;font-weight:500;transition:all .15s;}
-.tb.on{color:var(--pr);border-bottom-color:var(--pr);font-weight:700;background:var(--prl);}
-.tb:hover:not(.on){background:#f0f2ff;}
-.wrap{max-width:800px;margin:0 auto;padding:18px 14px 60px;}
-.pn{display:none;}.pn.on{display:block;}
-.rbadge{display:inline-flex;align-items:center;gap:6px;background:var(--pr);color:#fff;border-radius:20px;padding:3px 13px;font-size:0.76rem;font-weight:700;margin-bottom:10px;}
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
-.chip{border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:700;}
-.chip25{background:#fce7f3;color:#be185d;}
-.chip24{background:#ede9fe;color:#6d28d9;}
-.chip23{background:#d1fae5;color:#065f46;}
-.chip22{background:#fef3c7;color:#92400e;}
-.chip21{background:#dbeafe;color:#1e40af;}
-.card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px;box-shadow:0 2px 10px rgba(59,91,219,.06);}
-.ctitle{font-size:.98rem;font-weight:700;color:var(--pr);margin-bottom:10px;}
-.plabel{font-size:.69rem;font-weight:700;color:var(--pr);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
-.pbox{background:#f9f9fc;border-left:3px solid var(--pr);border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:11px;font-size:.92rem;}
-.tog{width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--prl);border:1px solid var(--border);border-radius:8px;padding:9px 13px;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--pr);margin-bottom:3px;transition:background .15s;}
-.tog:hover{background:#dce3fb;}
-.ti{transition:transform .2s;}
-.tog.open .ti{transform:rotate(180deg);}
-.tc{display:none;margin-top:5px;margin-bottom:7px;}
-.tc.open{display:block;}
-.lemma{background:var(--lbg);border:1px solid var(--lbd);border-radius:8px;padding:16px 18px;margin-bottom:8px;}
-.ltitle{font-size:.82rem;font-weight:700;color:#15803d;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #b6f0cc;}
-.lemma-list{list-style:none;margin:8px 0 12px 0;padding:0;}
-.lemma-list li{padding:2px 0;font-size:.92rem;}
-.lemma-proof{margin-top:10px;padding-top:10px;border-top:1px dashed #b6f0cc;font-size:.9rem;line-height:1.95;}
-.lemma-proof p{margin-bottom:10px;}
-.lemma-proof .pt{font-weight:700;color:#1e3a8a;}
-.sbox{background:#f8f9ff;border:1px solid var(--border);border-radius:8px;padding:14px;}
-.step{margin-bottom:11px;}
-.sh{font-size:.78rem;font-weight:700;color:var(--pr);display:flex;align-items:center;gap:5px;margin-bottom:3px;}
-.sn{background:var(--pr);color:#fff;width:19px;height:19px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.67rem;flex-shrink:0;}
-.sb{padding-left:24px;font-size:.9rem;}
-hr.s{border:none;border-top:1px dashed var(--border);margin:10px 0;}
-.kbox{background:var(--kbg);border:1px solid var(--kbd);border-radius:8px;padding:12px 14px;}
-.ktitle{font-size:.73rem;font-weight:700;color:#92400e;margin-bottom:7px;}
-.kl{list-style:none;}
-.kl li{padding:2px 0 2px 17px;position:relative;font-size:.88rem;}
-.kl li::before{content:'⚑';position:absolute;left:0;color:#f59e0b;font-size:.7rem;top:5px;}
-.kl li.warn::before{content:'⚠️';font-size:.75rem;top:3px;}
-.katex-display{overflow-x:auto;padding:6px 0;}
+  :root {
+    --bg: #0a0e1a;
+    --card: #111827;
+    --cyan: #22d3ee;
+    --amber: #f59e0b;
+    --text: #f1f5f9;
+    --border: #1e2a3a;
+    --card2: #1a2236;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
+  .card2 { background: var(--card2); border: 1px solid var(--border); border-radius: 8px; }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #1e2a3a;
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--cyan);
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(34,211,238,0.5);
+  }
+  input[type=range].amber::-webkit-slider-thumb {
+    background: var(--amber);
+    box-shadow: 0 0 8px rgba(245,158,11,0.5);
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--cyan);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 8px rgba(34,211,238,0.5);
+  }
+  input[type=range].amber::-moz-range-thumb { background: var(--amber); }
+
+  input[type=number] {
+    background: #1e2a3a;
+    border: 1px solid #2d3f55;
+    border-radius: 6px;
+    color: var(--text);
+    padding: 6px 10px;
+    width: 80px;
+    text-align: center;
+  }
+  input[type=number]:focus { outline: none; border-color: var(--cyan); }
+
+  input[type=text] {
+    outline: none;
+  }
+
+  .tactic-btn {
+    background: #1e2a3a;
+    border: 1px solid #2d3f55;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 13px;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .tactic-btn:hover { border-color: var(--cyan); color: var(--text); }
+  .tactic-btn.selected-a { background: rgba(34,211,238,0.15); border-color: var(--cyan); color: var(--cyan); }
+  .tactic-btn.selected-b { background: rgba(245,158,11,0.15); border-color: var(--amber); color: var(--amber); }
+
+  .venue-btn {
+    background: #1e2a3a;
+    border: 1px solid #2d3f55;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .venue-btn:hover { border-color: var(--cyan); }
+  .venue-btn.selected { background: rgba(34,211,238,0.15); border-color: var(--cyan); color: var(--cyan); }
+
+  .predict-btn {
+    background: linear-gradient(135deg, var(--cyan), #0891b2);
+    border: none;
+    border-radius: 10px;
+    color: #0a0e1a;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 0 20px rgba(34,211,238,0.3);
+  }
+  .predict-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 24px rgba(34,211,238,0.5); }
+
+  .back-btn {
+    background: transparent;
+    border: 1px solid #2d3f55;
+    border-radius: 8px;
+    color: #94a3b8;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  .prob-big { font-size: 42px; font-weight: 800; line-height: 1; }
+  .prob-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+
+  .score-chip {
+    background: #1a2236;
+    border: 1px solid #2d3f55;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1e2a3a;
+  }
+
+  .vs-badge {
+    background: linear-gradient(135deg, #1a2236, #0a0e1a);
+    border: 2px solid var(--amber);
+    border-radius: 50%;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; color: var(--amber);
+    box-shadow: 0 0 16px rgba(245,158,11,0.3);
+    flex-shrink: 0;
+  }
+
+  .step-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #1e2a3a;
+    transition: all 0.3s;
+  }
+  .step-dot.active { background: var(--cyan); box-shadow: 0 0 8px rgba(34,211,238,0.5); }
+  .step-dot.done { background: #0891b2; }
 </style>
 </head>
-<body>
-<header>
-  <div class="ini">mmrt</div>
-  <h1>📐 현대대수학1 기출 문제집</h1>
-  <p>빈출모음</p>
-</header>
-<div class="tabs" id="TB"></div>
-<div class="wrap" id="WR"></div>
+<body class="min-h-screen py-8 px-4">
+<div class="max-w-5xl mx-auto">
 
+  <!-- Header -->
+  <div class="text-center mb-6">
+    <div class="inline-flex items-center gap-2 mb-1">
+      <span style="font-size:24px">⚽</span>
+      <h1 class="text-2xl font-bold" style="color:var(--cyan)">FOOTBALL PREDICTOR</h1>
+    </div>
+    <p class="text-sm" style="color:#64748b">국가대표 경기 승률 예측 · Poisson Distribution Model</p>
+  </div>
+
+  <!-- Step Dots -->
+  <div class="flex gap-2 justify-center mb-6">
+    <div class="step-dot active" id="dot0"></div>
+    <div class="step-dot" id="dot1"></div>
+    <div class="step-dot" id="dot2"></div>
+  </div>
+
+  <!-- ========== STEP 0: Team Selection ========== -->
+  <div id="step0">
+    <div class="card p-6 mb-4">
+      <h2 class="text-lg font-bold text-center mb-6" style="color:var(--cyan)">팀 선택</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+        <div>
+          <div class="section-title">TEAM A</div>
+          <input type="text" id="teamAName" value="South Korea" placeholder="Team A"
+            class="w-full p-3 rounded-lg text-center font-bold text-base"
+            style="background:#1e2a3a;border:2px solid var(--cyan);color:var(--cyan)">
+        </div>
+        <div class="flex justify-center">
+          <div class="vs-badge">VS</div>
+        </div>
+        <div>
+          <div class="section-title">TEAM B</div>
+          <input type="text" id="teamBName" value="Japan" placeholder="Team B"
+            class="w-full p-3 rounded-lg text-center font-bold text-base"
+            style="background:#1e2a3a;border:2px solid var(--amber);color:var(--amber)">
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="predict-btn" onclick="goToStep(1)">다음 단계 →</button>
+    </div>
+  </div>
+
+  <!-- ========== STEP 1: Variables ========== -->
+  <div id="step1" class="hidden">
+    <div class="flex items-center justify-between mb-4">
+      <button class="back-btn" onclick="goToStep(0)">← 뒤로</button>
+      <span class="text-sm" style="color:#64748b">변수 입력</span>
+    </div>
+
+    <!-- Venue -->
+    <div class="card p-4 mb-4">
+      <div class="section-title">경기 조건 (Team A 기준)</div>
+      <div class="flex gap-3 flex-wrap">
+        <button class="venue-btn selected" data-venue="home" onclick="selectVenue('home')">🏟️ 홈</button>
+        <button class="venue-btn" data-venue="neutral" onclick="selectVenue('neutral')">⚖️ 중립</button>
+        <button class="venue-btn" data-venue="away" onclick="selectVenue('away')">✈️ 어웨이</button>
+      </div>
+    </div>
+
+    <!-- Team columns -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <!-- TEAM A column -->
+      <div class="card p-5">
+        <h3 class="font-bold text-base mb-4 pb-2" id="colLabelA" style="color:var(--cyan);border-bottom:1px solid rgba(34,211,238,0.2)">South Korea</h3>
+
+        <div class="mb-5">
+          <div class="section-title">팀 기본 강도</div>
+          <div class="flex justify-between text-sm mb-1"><span>FIFA OVR</span><span style="color:var(--cyan)" id="aOVRVal">75</span></div>
+          <input type="range" id="aOVR" min="60" max="90" value="75"
+            oninput="document.getElementById('aOVRVal').textContent=this.value">
+        </div>
+
+        <div class="mb-5">
+          <div class="section-title">최근 10경기 폼</div>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div class="text-center">
+              <div class="text-xs mb-1" style="color:#64748b">득점 합계</div>
+              <input type="number" id="aGF" min="0" max="30" value="12" style="width:100%">
+            </div>
+            <div class="text-center">
+              <div class="text-xs mb-1" style="color:#64748b">실점 합계</div>
+              <input type="number" id="aGA" min="0" max="30" value="8" style="width:100%">
+            </div>
+          </div>
+          <div class="flex justify-between text-xs mb-1">
+            <span>상대팀 평균 OVR</span>
+            <span style="color:var(--cyan)" id="aOppVal">72</span>
+          </div>
+          <input type="range" id="aOpp" min="60" max="90" value="72"
+            oninput="document.getElementById('aOppVal').textContent=this.value">
+        </div>
+
+        <div class="mb-5">
+          <div class="section-title">선수 컨디션 지수</div>
+          <div class="space-y-3">
+            <div class="card2 p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span>🥅 GK 최근 5경기 실점수</span>
+                <span style="color:var(--cyan)" id="aGKVal">4</span>
+              </div>
+              <input type="range" id="aGK" min="0" max="15" value="4"
+                oninput="document.getElementById('aGKVal').textContent=this.value;updateCond('a')">
+              <div class="text-xs mt-1" style="color:#64748b">Form = <span id="aGKForm">4.80</span></div>
+            </div>
+            <div class="card2 p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span>🛡️ DF 클리어런스/태클 평균</span>
+                <span style="color:var(--cyan)" id="aDFVal">6.0</span>
+              </div>
+              <input type="range" id="aDF" min="0" max="10" step="0.5" value="6"
+                oninput="document.getElementById('aDFVal').textContent=parseFloat(this.value).toFixed(1);updateCond('a')">
+            </div>
+            <div class="card2 p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span>⚙️ MF 키패스 평균</span>
+                <span style="color:var(--cyan)" id="aMFVal">2.5</span>
+              </div>
+              <input type="range" id="aMF" min="0" max="5" step="0.1" value="2.5"
+                oninput="document.getElementById('aMFVal').textContent=parseFloat(this.value).toFixed(1);updateCond('a')">
+            </div>
+            <div class="card2 p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span>⚡ FW 득점+어시스트 합계</span>
+                <span style="color:var(--cyan)" id="aFWVal">7.0</span>
+              </div>
+              <input type="range" id="aFW" min="0" max="15" step="0.5" value="7"
+                oninput="document.getElementById('aFWVal').textContent=parseFloat(this.value).toFixed(1);updateCond('a')">
+            </div>
+          </div>
+          <div class="mt-3 p-3 rounded-lg" style="background:rgba(34,211,238,0.05);border:1px solid rgba(34,211,238,0.15)">
+            <div class="flex justify-between text-sm">
+              <span>팀 컨디션 지수</span>
+              <span class="font-bold" style="color:var(--cyan)" id="aCondVal">6.42</span>
+            </div>
+            <div class="w-full h-2 rounded-full mt-2" style="background:#1e2a3a">
+              <div class="h-full rounded-full transition-all" style="background:var(--cyan);width:64%" id="aCondBar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-title">전술 스타일</div>
+          <div class="grid grid-cols-2 gap-2">
+            <button class="tactic-btn selected-a" data-tactic="press" data-team="a" onclick="selectTactic('a','press')">🔥 고압박</button>
+            <button class="tactic-btn" data-tactic="poss" data-team="a" onclick="selectTactic('a','poss')">🎯 점유율</button>
+            <button class="tactic-btn" data-tactic="counter" data-team="a" onclick="selectTactic('a','counter')">⚡ 카운터</button>
+            <button class="tactic-btn" data-tactic="def" data-team="a" onclick="selectTactic('a','def')">🛡️ 수비적</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEAM B column -->
+      <div class="card p-5">
+        <h3 class="font-bold text-base mb-4 pb-2" id="colLabelB" style="color:var(--amber);border-bottom:1px solid rgba(245,158,11,0.2)">Japan</h3>
+
+        <div class="mb-5">
+          <div class="section-title">팀 기본 강도</div>
+          <div class="flex justify-between text-sm mb-1"><span>FIFA OVR</span><span style="color:var(--amber)" id="bOVRVal">73</span></div>
+          <input type="range" id="bOVR" min="60" max="90" value="73" class="amber"
+            oninput="document.getElementById('bOVRVal').textContent=this.value">
+        </div>
+
+        <div class="mb-5">
+          <div class="section-title">최근 10경기 폼</div>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div class="text-center">
+              <div class="text-xs mb-1" style="color:#64748b">득점 합계</div>
+              <input type="number" id="bGF" min="0" max="30" value="10" style="width:100%">
+            </div>
+            <div class="text-center">
+              <div class="text-xs mb-1" style="color:#64748b">실점 합계</div>
+              <input type="number" id="bGA" min="0" max="30" value="9" style="width:100%">
+            </div>
+          </div>
+          <div class="flex justify-between text-xs mb-1">
+            <span>상대팀 평균 OVR</span>
+            <span style="color:var(--amber)" id="bOppVal">70</span>
+          </div>
+          <input type="range" id="bOpp" min="60" max="90" value="70" class="amber"
+            oninput="document.getElementById('bOppVal').textContent=this.value">
+        </div>
+
+        <div class="mb-5">
+          <div class="section-title">선수 컨디션 지수</div>
+          <div class="space-y-3">
+            <div class="card2 p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span>🥅 GK 최근 5경기 실점수</span>
+                <span style="color:var(--amber)" id="bGKVal">5</span>
+              </div>
+              <input type="range" id="bGK" min="0" max="15" value="5" class="amber"
+                oninput="document.getElementById('bGKVal').textContent=this.value;updateCond('b')">
+              <div class="text-xs mt-1" style="color:#64748b">Form = <span id="bGKForm">4.50</span></div>
+            </div>
+            <div class="card2 p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span>🛡️ DF 클리어런스/태클 평균</span>
+                <span style="color:var(--amber)" id="bDFVal">5.5</span>
+              </div>
+              <input type="range" id="bDF" min="0" max="10" step="0.5" value="5.5" class="amber"
+                oninput="document.getElementById('bDFVal').textContent=parseFloat(this.value).toFixed(1);updateCond('b')">
+            </div>
+            <div class="card2 p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span>⚙️ MF 키패스 평균</span>
+                <span style="color:var(--amber)" id="bMFVal">2.0</span>
+              </div>
+              <input type="range" id="bMF" min="0" max="5" step="0.1" value="2" class="amber"
+                oninput="document.getElementById('bMFVal').textContent=parseFloat(this.value).toFixed(1);updateCond('b')">
+            </div>
+            <div class="card2 p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span>⚡ FW 득점+어시스트 합계</span>
+                <span style="color:var(--amber)" id="bFWVal">6.0</span>
+              </div>
+              <input type="range" id="bFW" min="0" max="15" step="0.5" value="6" class="amber"
+                oninput="document.getElementById('bFWVal').textContent=parseFloat(this.value).toFixed(1);updateCond('b')">
+            </div>
+          </div>
+          <div class="mt-3 p-3 rounded-lg" style="background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15)">
+            <div class="flex justify-between text-sm">
+              <span>팀 컨디션 지수</span>
+              <span class="font-bold" style="color:var(--amber)" id="bCondVal">5.89</span>
+            </div>
+            <div class="w-full h-2 rounded-full mt-2" style="background:#1e2a3a">
+              <div class="h-full rounded-full transition-all" style="background:var(--amber);width:59%" id="bCondBar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-title">전술 스타일</div>
+          <div class="grid grid-cols-2 gap-2">
+            <button class="tactic-btn selected-b" data-tactic="poss" data-team="b" onclick="selectTactic('b','poss')">🎯 점유율</button>
+            <button class="tactic-btn" data-tactic="press" data-team="b" onclick="selectTactic('b','press')">🔥 고압박</button>
+            <button class="tactic-btn" data-tactic="counter" data-team="b" onclick="selectTactic('b','counter')">⚡ 카운터</button>
+            <button class="tactic-btn" data-tactic="def" data-team="b" onclick="selectTactic('b','def')">🛡️ 수비적</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <button class="predict-btn" onclick="runPredict()">⚽ 예측 실행</button>
+    </div>
+  </div>
+
+  <!-- ========== STEP 2: Results ========== -->
+  <div id="step2" class="hidden">
+    <div class="flex items-center justify-between mb-4">
+      <button class="back-btn" onclick="goToStep(1)">← 다시 설정</button>
+      <span class="text-sm" style="color:#64748b">예측 결과</span>
+    </div>
+
+    <!-- Main result card -->
+    <div class="card p-6 mb-4">
+      <div class="flex justify-between items-center mb-5">
+        <span class="font-bold text-lg" style="color:var(--cyan)" id="rNameA">South Korea</span>
+        <span class="text-xs px-3 py-1 rounded-full" style="background:#1e2a3a;color:#64748b">MATCH PREDICTION</span>
+        <span class="font-bold text-lg" style="color:var(--amber)" id="rNameB">Japan</span>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2 mb-5 text-center">
+        <div>
+          <div class="prob-big" style="color:var(--cyan)" id="pWinA">--%</div>
+          <div class="prob-label" id="pLabelA">Team A 승</div>
+        </div>
+        <div>
+          <div class="prob-big" style="color:#94a3b8" id="pDraw">--%</div>
+          <div class="prob-label">무승부</div>
+        </div>
+        <div>
+          <div class="prob-big" style="color:var(--amber)" id="pWinB">--%</div>
+          <div class="prob-label" id="pLabelB">Team B 승</div>
+        </div>
+      </div>
+
+      <!-- Gradient probability bar -->
+      <div class="w-full h-8 rounded-full overflow-hidden flex mb-1">
+        <div class="h-full transition-all" id="barA" style="width:40%;background:linear-gradient(90deg,#22d3ee,#06b6d4)"></div>
+        <div class="h-full transition-all" id="barD" style="width:20%;background:#374151"></div>
+        <div class="h-full transition-all" id="barB" style="width:40%;background:linear-gradient(90deg,#d97706,#f59e0b)"></div>
+      </div>
+      <div class="flex justify-between text-xs" style="color:#64748b">
+        <span id="bLabelA">Team A 승</span>
+        <span>무</span>
+        <span id="bLabelB">Team B 승</span>
+      </div>
+
+      <div class="mt-5 p-4 rounded-xl text-center" id="verdictBox"
+        style="background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2)">
+        <div class="text-xs mb-1" style="color:#64748b">예측 결과</div>
+        <div class="text-xl font-bold" id="verdictText" style="color:var(--cyan)">--</div>
+      </div>
+    </div>
+
+    <!-- xG + Top scores -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div class="card p-5">
+        <div class="section-title">예상 기대 골 (xG)</div>
+        <div class="flex justify-around items-center py-2">
+          <div class="text-center">
+            <div class="text-4xl font-black" style="color:var(--cyan)" id="xgA">1.35</div>
+            <div class="text-xs mt-1" style="color:#64748b">xG · Team A</div>
+          </div>
+          <div class="text-2xl" style="color:#374151">―</div>
+          <div class="text-center">
+            <div class="text-4xl font-black" style="color:var(--amber)" id="xgB">1.35</div>
+            <div class="text-xs mt-1" style="color:#64748b">xG · Team B</div>
+          </div>
+        </div>
+      </div>
+      <div class="card p-5">
+        <div class="section-title">가장 확률 높은 스코어 TOP 3</div>
+        <div class="space-y-2" id="topScores"></div>
+      </div>
+    </div>
+
+    <!-- Radar charts -->
+    <div class="card p-5 mb-4">
+      <div class="section-title">팀 종합 지수 레이더 차트</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="text-center">
+          <div class="text-sm font-semibold mb-2" style="color:var(--cyan)" id="rRadarA">Team A</div>
+          <canvas id="radarA" width="260" height="260" style="max-width:100%;margin:auto;display:block"></canvas>
+        </div>
+        <div class="text-center">
+          <div class="text-sm font-semibold mb-2" style="color:var(--amber)" id="rRadarB">Team B</div>
+          <canvas id="radarB" width="260" height="260" style="max-width:100%;margin:auto;display:block"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail index bars -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="card p-5">
+        <div class="section-title">Team A 세부 지수</div>
+        <div id="detailA" class="space-y-3"></div>
+      </div>
+      <div class="card p-5">
+        <div class="section-title">Team B 세부 지수</div>
+        <div id="detailB" class="space-y-3"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
 <script>
-var yrcls={"25":"chip25","24":"chip24","23":"chip23","22":"chip22","21":"chip21"};
+// ── State ──────────────────────────────────────────────────────────────────
+const S = { venue: 'home', tacticA: 'press', tacticB: 'poss' };
 
-function doRender(){
-  renderMathInElement(document.body,{
-    delimiters:[
-      {left:"\\(",right:"\\)",display:false},
-      {left:"\\[",right:"\\]",display:true}
-    ],
-    throwOnError:false,
-    ignoredTags:["script","noscript","style","textarea","code"]
+const TACTIC = {
+  press:   { atkMul: 1.05, defMul: 0.97, label: '🔥 고압박' },
+  poss:    { atkMul: 0.98, defMul: 1.05, label: '🎯 점유율' },
+  counter: { atkMul: 1.08, defMul: 0.95, label: '⚡ 카운터어택' },
+  def:     { atkMul: 0.92, defMul: 1.10, label: '🛡️ 수비적' },
+};
+
+const VENUE_MOD = {
+  home:    { atkMul: 1.05, defMul: 1.03 },
+  neutral: { atkMul: 1.00, defMul: 1.00 },
+  away:    { atkMul: 0.97, defMul: 0.95 },
+};
+
+// ── Navigation ─────────────────────────────────────────────────────────────
+function goToStep(n) {
+  [0,1,2].forEach(i => {
+    document.getElementById('step'+i).classList.toggle('hidden', i!==n);
+    const d = document.getElementById('dot'+i);
+    d.classList.remove('active','done');
+    if (i < n) d.classList.add('done');
+    else if (i === n) d.classList.add('active');
+  });
+  if (n === 1) {
+    const a = document.getElementById('teamAName').value || 'Team A';
+    const b = document.getElementById('teamBName').value || 'Team B';
+    document.getElementById('colLabelA').textContent = a;
+    document.getElementById('colLabelB').textContent = b;
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Venue ──────────────────────────────────────────────────────────────────
+function selectVenue(v) {
+  S.venue = v;
+  document.querySelectorAll('.venue-btn').forEach(b => b.classList.toggle('selected', b.dataset.venue===v));
+}
+
+// ── Tactic ─────────────────────────────────────────────────────────────────
+function selectTactic(team, t) {
+  S['tactic'+team.toUpperCase()] = t;
+  document.querySelectorAll(`.tactic-btn[data-team="${team}"]`).forEach(b => {
+    b.classList.remove('selected-a','selected-b');
+    if (b.dataset.tactic === t) b.classList.add(team==='a'?'selected-a':'selected-b');
   });
 }
-function tog(b){
-  b.classList.toggle("open");
-  b.nextElementSibling.classList.toggle("open");
-  setTimeout(doRender,30);
+
+// ── Condition calc ─────────────────────────────────────────────────────────
+function calcCond(team) {
+  const t = team;
+  const gkGoals = parseFloat(document.getElementById(t+'GK').value);
+  const dfScore = parseFloat(document.getElementById(t+'DF').value);
+  const mfScore = parseFloat(document.getElementById(t+'MF').value);
+  const fwScore = parseFloat(document.getElementById(t+'FW').value);
+
+  const gkForm = Math.max(0, 6.0 - gkGoals * 0.3);
+  const dfForm = dfScore;                // 0-10
+  const mfForm = mfScore * 2;            // 0-10
+  const fwForm = fwScore / 1.5;          // 0-10
+
+  // formula / 4.6 then clamp to 0-10
+  const raw = (gkForm*1.2 + dfForm*1.0 + mfForm*1.1 + fwForm*1.3) / 4.6;
+  const norm = Math.min(10, Math.max(0, raw));
+
+  const color = team==='a' ? 'var(--cyan)' : 'var(--amber)';
+  document.getElementById(t+'GKForm').textContent = gkForm.toFixed(2);
+  document.getElementById(t+'CondVal').textContent = norm.toFixed(2);
+  document.getElementById(t+'CondBar').style.width = (norm*10)+'%';
+  return { gkForm, dfForm, mfForm, fwForm, norm };
 }
 
-var D=[];
+function updateCond(t) { calcCond(t); }
 
-// ────────────────────────────────────────────
-// #1 ∩Hᵢ 부분군
-// ────────────────────────────────────────────
-D.push({
-  rank:1, title:"∩Hᵢ 부분군 증명",
-  src:[["2025 Q7 [3점]","25"],["2024 Q7 [3점]","24"],["2023 Q4 [3점]","23"],["2022 Q5 [3점]","22"],["2021 Q5 [3점]","21"]],
-  prob:"군 \\(G\\)와 임의의 첨자집합 \\(I\\,(I\\neq\\emptyset)\\), 각 \\(i\\in I\\)에 대하여 \\(H_i\\)를 \\(G\\)의 부분군이라 하자. \\(H=\\bigcap_{i\\in I}H_i\\)라 할 때, \\(H\\)가 \\(G\\)의 부분군임을 보이시오.",
-  lemmas:[],
-  steps:[
-    {t:"\\(H\\neq\\emptyset\\) 확인 (항등원 존재)",
-     b:"\\(\\forall i\\in I\\)에 대해 \\(H_i\\leq G\\)이므로 \\(e\\in H_i\\). 이는 모든 \\(i\\in I\\)에 대해 성립하므로 \\(e\\in\\bigcap_{i\\in I}H_i=H\\). 따라서 \\(H\\neq\\emptyset\\)이고 항등원이 존재한다."},
-    {t:"연산에 닫혀있음",
-     b:"\\(\\forall a,b\\in H\\)이면 \\(\\forall i\\in I\\)에 대해 \\(a,b\\in H_i\\). \\(H_i\\leq G\\)이므로 \\(ab\\in H_i\\). 모든 \\(i\\in I\\)에 대해 성립하므로 \\(ab\\in\\bigcap_{i\\in I}H_i=H\\)."},
-    {t:"역원 존재",
-     b:"\\(a\\in H\\)이면 \\(\\forall i\\in I\\)에 대해 \\(a\\in H_i\\). \\(H_i\\leq G\\)이므로 \\(a^{-1}\\in H_i\\). 모든 \\(i\\in I\\)에 대해 성립하므로 \\(a^{-1}\\in\\bigcap_{i\\in I}H_i=H\\)."},
-    {t:"결론",
-     b:"정리 5.12에 의해 \\(H\\leq G\\). (결합법칙은 \\(G\\)에서 상속) \\(\\square\\)"}
-  ],
-  keys:[
-    "5년 연속 출제 — 가장 확실한 점수원",
-    "결합법칙은 \\(G\\)에서 상속되므로 따로 증명 불필요",
-    "정리 5.12: \\(H\\leq G\\Leftrightarrow\\) ① \\(G\\)의 연산에 닫힘 ② \\(e\\in H\\) ③ \\(\\forall a\\in H,\\,a^{-1}\\in H\\)",
-    {w:true, t:"교수님 첨삭: \\(\\forall i\\in I\\) 를 각 단계마다 명시 — 빠뜨리면 감점 (2023 답안 지적)"}
-  ]
-});
+// ── Poisson PMF ────────────────────────────────────────────────────────────
+function poissonPMF(lambda, k) {
+  if (lambda <= 0) return k===0 ? 1 : 0;
+  let lp = -lambda + k * Math.log(lambda);
+  for (let i=2; i<=k; i++) lp -= Math.log(i);
+  return Math.exp(lp);
+}
 
-// ────────────────────────────────────────────
-// #2 순환군 보조정리 세트
-// ────────────────────────────────────────────
-D.push({
-  rank:2, title:"순환군 보조정리 세트",
-  src:[["2025 Q6 (i~iii) [9점]","25"],["2024 Q4 (i~iv) [12점]","24"],["2023 Q7 [6점]","23"],["2022 Q8 [6점]","22"]],
-  prob:"유한군 \\(G\\)는 \\(a\\)로 생성되는 위수가 \\(n\\)인 순환군이다.<br>(i) \\(n=\\min\\{k\\mid k\\text{는 정수},\\,k>0,\\,a^k=e\\}\\)임을 보이시오.<br>(ii) 정수 \\(s\\)에 대하여 \\(|\\langle a^s\\rangle|=\\dfrac{n}{\\gcd(n,s)}\\)임을 보이시오.<br>(iii) \\(G\\)의 부분군 \\(H\\), \\(K\\)에 대하여 \\(|H|=|K|\\)이면 \\(H=K\\)임을 보이시오. (2025 기준)",
-  lemmas:[
-    {
-      id:"보조정리 1 (필기본 p.4/9)",
-      title:"\\(G=\\langle a\\rangle\\)일 때 다음 세 조건은 동치",
-      body:'<ul class="lemma-list"><li>(1) \\(|G|=\\infty\\)</li><li>(2) \\(a^m=e\\Leftrightarrow m=0\\)</li><li>(3) \\(a^i=a^j\\Leftrightarrow i=j\\)</li></ul><div class="lemma-proof"><p><span class="pt">증명 (2)⇒(3):</span> \\(a^i=a^j\\Leftrightarrow a^{i-j}=e\\overset{(2)}{\\Leftrightarrow}i-j=0\\Leftrightarrow i=j\\).</p><p><span class="pt">(3)⇒(1):</span> (3)이 성립하면 \\(i\\neq j\\Rightarrow a^i\\neq a^j\\). \\(\\mathbb{Z}\\)는 무한집합이므로 \\(G=\\langle a\\rangle=\\{a^n\\mid n\\in\\mathbb{Z}\\}\\)의 원소는 모두 서로 다른 무한히 많은 원소. 따라서 \\(|G|=\\infty\\).</p><p><span class="pt">(1)⇒(2):</span> 대우를 보인다. \\(a^m=e\\)인 \\(m\\neq 0\\)이 존재한다고 가정. \\(a^{-m}=(a^m)^{-1}=e\\)이므로 \\(m>0\\)으로 가정해도 된다. 임의의 \\(g\\in G=\\langle a\\rangle\\)에 대해 \\(g=a^k\\)인 정수 \\(k\\)가 존재. 나눗셈 알고리즘에 의해 \\(k=qm+r\\,(0\\leq r&lt;m)\\)이면 \\(a^k=(a^m)^q\\cdot a^r=e\\cdot a^r=a^r\\). 따라서 \\(G\\subseteq\\{e,a,\\ldots,a^{m-1}\\}\\)이므로 \\(|G|\\leq m&lt;\\infty\\). 즉 (1)이 성립하지 않는다. \\(\\square\\)</p></div>'
-    },
-    {
-      id:"보조정리 2 (필기본 p.4/9)",
-      title:"\\(G=\\langle a\\rangle\\), \\(|G|&lt;\\infty\\)이면 \\(|G|=\\min\\{k\\in\\mathbb{Z}^+\\mid a^k=e\\}\\)",
-      body:'<div class="lemma-proof"><p>\\(|G|&lt;\\infty\\)이므로 보조정리 1의 (1)이 성립하지 않고, 따라서 (2)도 성립하지 않는다. 즉 \\(a^m=e\\)인 \\(m\\neq 0\\)이 존재하며, \\(m>0\\)으로 가정해도 된다.</p><p>\\(m=\\min\\{k\\in\\mathbb{Z}^+\\mid a^k=e\\}\\)라 하자. 임의의 \\(g\\in G\\)에 대해 \\(g=a^n\\)이고 나눗셈 알고리즘에 의해 \\(n=mq+r\\,(0\\leq r&lt;m)\\)이면,<br>\\(g=a^n=a^{mq+r}=(a^m)^q\\cdot a^r=e\\cdot a^r=a^r\\).<br>따라서 \\(G=\\{a^0,a^1,\\ldots,a^{m-1}\\}\\)이고 \\(|G|=m\\)이다. \\(\\square\\)</p></div>'
-    },
-    {
-      id:"보조정리 3 (필기본 p.4/9)",
-      title:"\\(G=\\langle a\\rangle\\), \\(|G|=m&lt;\\infty\\)이면 \\(a^n=e\\Leftrightarrow m\\mid n\\)",
-      body:'<div class="lemma-proof"><p><span class="pt">(⇒)</span> 나눗셈 알고리즘에 의해 \\(n=mq+r\\,(0\\leq r&lt;m)\\)이면,<br>\\(e=a^n=a^{mq+r}=(a^m)^q\\cdot a^r=e\\cdot a^r=a^r\\).<br>\\(m\\)의 최솟값에 의해 \\(r=0\\). \\(\\therefore m\\mid n\\).</p><p><span class="pt">(⇐)</span> \\(m\\mid n\\)이면 \\(n=mk\\)인 정수 \\(k\\)가 존재. \\(a^n=a^{mk}=(a^m)^k=e^k=e\\). \\(\\square\\)</p></div>'
-    }
-  ],
-  steps:[
-    {t:"(i) \\(n\\)이 최솟값임을 증명",
-     b:"보조정리 2에 의해 \\(|G|=\\min\\{k\\in\\mathbb{Z}^+\\mid a^k=e\\}\\). \\(|G|=n\\)이므로 \\(n=\\min\\{k\\in\\mathbb{Z}^+\\mid a^k=e\\}\\). \\(\\square\\)"},
-    {t:"(ii) \\(|\\langle a^s\\rangle|=n/\\gcd(n,s)\\) 증명 (필기본 정리 6.15)",
-     b:"\\(b=a^s\\in G\\), \\(d=\\gcd(n,s)\\), \\(m=|\\langle b\\rangle|=\\min\\{k\\in\\mathbb{Z}^+\\mid b^k=e\\}\\)라 하자.<br>\\(n=n_1d\\), \\(s=s_1d\\), \\(\\gcd(n_1,s_1)=1\\)인 \\(n_1,s_1\\in\\mathbb{Z}\\)가 존재한다.<br><br><strong>①</strong> \\(b^{n_1}=(a^s)^{n_1}=(a^{s_1d})^{n_1}=(a^{n_1d})^{s_1}=(a^n)^{s_1}=e^{s_1}=e\\).<br>\\(m\\)의 최솟값에 의해 \\(m\\leq n_1\\).<br><br><strong>②</strong> \\(b^m=(a^s)^m=e\\)이므로 보조정리 3에 의해 \\(n\\mid sm\\).<br>\\(n_1d\\mid s_1dm\\Rightarrow n_1\\mid s_1m\\). \\(\\gcd(n_1,s_1)=1\\)이므로 \\(n_1\\mid m\\).<br><br>①②에 의해 \\(m=n_1=\\dfrac{n}{d}=\\dfrac{n}{\\gcd(n,s)}\\). 따라서 \\(|\\langle a^s\\rangle|=\\dfrac{n}{\\gcd(n,s)}\\). \\(\\square\\)"},
-    {t:"(iii) \\(|H|=|K|\\Rightarrow H=K\\) (필기본 정리 6.15 (2))",
-     b:"순환군의 부분군은 순환군(정리 6.6)이므로 \\(H=\\langle a^s\\rangle\\), \\(K=\\langle a^t\\rangle\\)인 정수 \\(s,t\\)가 존재한다.<br><br>(ii)에 의해 \\(|H|=|K|\\Rightarrow\\dfrac{n}{\\gcd(n,s)}=\\dfrac{n}{\\gcd(n,t)}\\Rightarrow\\gcd(n,s)=\\gcd(n,t)=d\\).<br><br>\\(\\langle a^s\\rangle=\\langle a^d\\rangle\\)임을 보인다:<br>① \\(d\\mid s\\)이므로 \\(s=dk\\)인 정수 \\(k\\)가 존재. \\(a^s=(a^d)^k\\in\\langle a^d\\rangle\\). 따라서 \\(\\langle a^s\\rangle\\subseteq\\langle a^d\\rangle\\).<br>② 베주 항등식에 의해 \\(d=\\alpha n+\\beta s\\)인 정수 \\(\\alpha,\\beta\\)가 존재. \\(a^d=a^{\\alpha n+\\beta s}=(a^n)^\\alpha(a^s)^\\beta=e^\\alpha(a^s)^\\beta\\in\\langle a^s\\rangle\\). 따라서 \\(\\langle a^d\\rangle\\subseteq\\langle a^s\\rangle\\).<br>①②에 의해 \\(\\langle a^s\\rangle=\\langle a^d\\rangle\\).<br><br>같은 이유로 \\(\\langle a^t\\rangle=\\langle a^d\\rangle\\). 따라서 \\(H=\\langle a^d\\rangle=K\\). \\(\\square\\)"}
-  ],
-  keys:[
-    "보조정리 1→2→3 순서로 증명, (i)은 보조정리 2를 인용",
-    "(ii) ① 상계(\\(m\\leq n/d\\)) + ② 하계(\\(n/d\\leq m\\)) 양방향으로 \\(m=n/d\\) 확정",
-    "2025: (i~iii), 2024: (i~iv 부분군 개수 포함) — 구별 필요",
-    {w:true, t:"교수님 첨삭: (3)⇒(1)에서 '\\(\\mathbb{Z}\\)는 무한집합이므로' 근거 문장 필수 — 없으면 순환논리로 감점"}
-  ]
-});
+// ── Main prediction ────────────────────────────────────────────────────────
+function runPredict() {
+  const BASE = 1.35, MAX_G = 8;
 
-// ────────────────────────────────────────────
-// #3 순환군의 부분군은 순환군
-// ────────────────────────────────────────────
-D.push({
-  rank:3, title:"순환군의 부분군은 순환군",
-  src:[["2025 Q5 [3점]","25"],["2023 Q5 [4점]","23"],["2022 Q6 [3점]","22"],["2021 Q5(일부)","21"]],
-  prob:"순환군의 부분군이 순환군임을 보이시오. (필기본 정리 6.6)",
-  lemmas:[],
-  steps:[
-    {t:"설정",
-     b:"\\(G=\\langle a\\rangle\\)을 순환군, \\(H\\leq G\\)를 부분군이라 하자."},
-    {t:"경우 1: \\(H=\\{e\\}\\)",
-     b:"\\(H=\\{e\\}=\\langle e\\rangle\\)이므로 자명한 순환군이다."},
-    {t:"경우 2: \\(H\\neq\\{e\\}\\) — 최솟값 원소 선택",
-     b:"\\(H\\neq\\{e\\}\\)이면 \\(e\\)가 아닌 원소가 존재. \\(\\forall x\\in H,\\,x\\neq e\\)에 대해 \\(\\exists k\\in\\mathbb{Z},\\,k\\neq 0\\)이고 \\(x=a^k\\)이다.<br>\\(a^{-k}=(a^k)^{-1}\\in H\\)이므로 양의 지수를 가진 원소가 존재한다.<br>\\(S=\\{k\\in\\mathbb{N}\\mid a^k\\in H\\}\\neq\\emptyset\\)이고, 정수의 정렬성에 의해 \\(S\\)는 가장 작은 원소를 가진다. 이를 \\(m\\)이라 하면 \\(\\langle a^m\\rangle\\supseteq\\{e\\}\\)이다. (정리 5.19)"},
-    {t:"\\(H=\\langle a^m\\rangle\\) 증명",
-     b:"<strong>(⊆, \\(\\langle a^m\\rangle\\subseteq H\\)):</strong> \\(a^m\\in H\\)이고 \\(H\\)는 군이므로 \\(\\langle a^m\\rangle\\subseteq H\\).<br><br><strong>(⊇, \\(H\\subseteq\\langle a^m\\rangle\\)):</strong> 임의의 \\(h\\in H\\)에 대해 \\(h=a^k\\)인 정수 \\(k\\)가 존재.<br>나눗셈 알고리즘에 의해 \\(k=mq+r\\,(0\\leq r&lt;m)\\)이면,<br>\\(a^r=a^{k-mq}=a^k\\cdot(a^m)^{-q}=h\\cdot(a^m)^{-q}\\in H\\).<br>\\(m\\)의 최솟값에 의해 \\(r=0\\). 따라서 \\(m\\mid k\\), 즉 \\(h=a^k=(a^m)^q\\in\\langle a^m\\rangle\\).<br><br>\\(H=\\langle a^m\\rangle\\)이므로 \\(H\\)는 순환군이다. \\(\\square\\)"}
-  ],
-  keys:[
-    "'정수의 정렬성에 의해 최솟값 \\(m\\) 존재' 문장 필수",
-    "⊆ 방향(쉬운 것) 먼저, ⊇에서 나눗셈 알고리즘 → \\(r=0\\) 유도",
-    {w:true, t:"교수님 첨삭: \\(a^r\\in H\\) 이후 '\\(m\\)의 최솟값에 의해 \\(r=0\\)' 반드시 명시"}
-  ]
-});
+  const aOVR   = parseInt(document.getElementById('aOVR').value);
+  const bOVR   = parseInt(document.getElementById('bOVR').value);
+  const aGF    = Math.max(0, parseInt(document.getElementById('aGF').value)||0);
+  const aGA    = Math.max(0, parseInt(document.getElementById('aGA').value)||0);
+  const bGF    = Math.max(0, parseInt(document.getElementById('bGF').value)||0);
+  const bGA    = Math.max(0, parseInt(document.getElementById('bGA').value)||0);
+  const aOpp   = parseInt(document.getElementById('aOpp').value);
+  const bOpp   = parseInt(document.getElementById('bOpp').value);
 
-// ────────────────────────────────────────────
-// #4 새로운 연산으로 Abel군 증명
-// ────────────────────────────────────────────
-D.push({
-  rank:4, title:"새로운 연산으로 Abel군 증명",
-  src:[["2025 Q1 [4점] (\\(a*b=ab/2\\))","25"],["2024 Q2 (\\(a*b=a+b-ab\\))","24"],["2023 Q2 (\\(a*b=a+b-2\\))","23"],["2022 Q2 (\\(a*b=a+b-1\\))","22"]],
-  prob:"양의 유리수 집합 \\(\\mathbb{Q}^+\\) 위에 연산 \\(*\\)를 \\(a*b=\\dfrac{ab}{2}\\)로 정의하자. \\((\\mathbb{Q}^+,*)\\)가 Abel 군임을 보이시오. (2025 Q1)",
-  lemmas:[],
-  steps:[
-    {t:"(1) 닫혀있음",
-     b:"\\(\\forall a,b\\in\\mathbb{Q}^+\\)에 대해 \\(a*b=\\dfrac{ab}{2}\\in\\mathbb{Q}^+\\). (양의 유리수의 곱은 양의 유리수)"},
-    {t:"(2) 가환법칙",
-     b:"\\(\\forall a,b\\in\\mathbb{Q}^+\\)에 대해 \\(a*b=\\dfrac{ab}{2}=\\dfrac{ba}{2}=b*a\\). \\(\\therefore\\) 가환."},
-    {t:"(3) 결합법칙",
-     b:"\\((a*b)*c=\\dfrac{ab}{2}*c=\\dfrac{\\frac{ab}{2}\\cdot c}{2}=\\dfrac{abc}{4}\\).<br>\\(a*(b*c)=a*\\dfrac{bc}{2}=\\dfrac{a\\cdot\\frac{bc}{2}}{2}=\\dfrac{abc}{4}\\).<br>\\((a*b)*c=a*(b*c)\\)이므로 결합법칙 성립."},
-    {t:"(4) 항등원",
-     b:"\\(a*e=\\dfrac{ae}{2}=a\\Rightarrow e=2\\). \\(a*2=\\dfrac{2a}{2}=a=2*a\\). 항등원은 \\(2\\in\\mathbb{Q}^+\\)."},
-    {t:"(5) 역원",
-     b:"\\(a*x=2\\)로 놓으면 \\(\\dfrac{ax}{2}=2\\Rightarrow x=\\dfrac{4}{a}\\in\\mathbb{Q}^+\\). \\(a*\\dfrac{4}{a}=\\dfrac{a\\cdot\\frac{4}{a}}{2}=2\\). 역원 존재."},
-    {t:"결론",
-     b:"(1)~(5)에 의해 \\((\\mathbb{Q}^+,*)\\)는 Abel 군. \\(\\square\\)"}
-  ],
-  keys:[
-    "항등원: \\(a*e=a\\)로 놓고 \\(e\\) 직접 계산 → \\(e=2\\)",
-    "역원: \\(a*x=e=2\\)로 놓고 \\(x=4/a\\) 도출",
-    "매년 연산이 바뀜 — 5단계 패턴은 동일",
-    "연도별 연산: \\(a+b-1\\)(22), \\(a+b-2\\)(23), \\(a+b-ab\\)(24), \\(ab/2\\)(25)"
-  ]
-});
+  const aC = calcCond('a');
+  const bC = calcCond('b');
 
-// ────────────────────────────────────────────
-// #5 복소수 방정식
-// ────────────────────────────────────────────
-D.push({
-  rank:5, title:"복소수 방정식 (근 구하기)",
-  src:[["2025 Q2 [4점] (\\(z^4=-4\\))","25"],["2023 Q8 (\\(z^8=256\\))","23"],["2022 Q11 (\\(z^4=-16\\))","22"],["2021 Q9 (\\(z^6=-64\\))","21"]],
-  prob:"방정식 \\(z^4=-4\\)의 복소수 근을 모두 구하시오. (2025 Q2)",
-  lemmas:[],
-  steps:[
-    {t:"극형식 변환",
-     b:"\\(z=|z|e^{i\\theta}\\)로 놓으면 \\(z^4=|z|^4e^{i4\\theta}\\).<br>\\(-4=4e^{i\\pi}\\) (\\(\\because\\,|-4|=4\\), 편각 \\(\\pi\\))."},
-    {t:"크기·편각 분리",
-     b:"\\(|z|^4=4\\Rightarrow|z|^2=2\\Rightarrow|z|=\\sqrt{2}\\).<br>\\(\\cos 4\\theta+i\\sin 4\\theta=-1+0i\\)이므로<br>\\(4\\theta=\\pi+2n\\pi\\,(n=0,1,2,3)\\)<br>\\(\\therefore\\theta=\\dfrac{(2n+1)\\pi}{4}\\)"},
-    {t:"4개의 근 계산",
-     b:"\\(n=0\\): \\(z=\\sqrt{2}\\left(\\dfrac{\\sqrt{2}}{2}+\\dfrac{\\sqrt{2}}{2}i\\right)=1+i\\)<br><br>\\(n=1\\): \\(z=\\sqrt{2}\\left(-\\dfrac{\\sqrt{2}}{2}+\\dfrac{\\sqrt{2}}{2}i\\right)=-1+i\\)<br><br>\\(n=2\\): \\(z=\\sqrt{2}\\left(-\\dfrac{\\sqrt{2}}{2}-\\dfrac{\\sqrt{2}}{2}i\\right)=-1-i\\)<br><br>\\(n=3\\): \\(z=\\sqrt{2}\\left(\\dfrac{\\sqrt{2}}{2}-\\dfrac{\\sqrt{2}}{2}i\\right)=1-i\\)"},
-    {t:"결론",
-     b:"\\(z=1+i,\\,-1+i,\\,-1-i,\\,1-i\\) (4개). \\(\\square\\)"}
-  ],
-  keys:[
-    "\\(n=0,1,2,3\\) 4개 모두 — 하나 빠지면 감점",
-    "\\(-4=4e^{i\\pi}\\) 극형식 변환이 첫 단계",
-    "매년 방정식 바뀜: \\(z^6=-64\\)(21), \\(z^4=-16\\)(22), \\(z^8=256\\)(23), \\(z^4=-4\\)(25)",
-    {w:true, t:"교수님 첨삭: 각도(\\(\\theta\\))만 쓰지 말고 \\(z=\\) 형태 최종 답 명시 필수"}
-  ]
-});
+  // ── Strength components
+  const aBase = aOVR / 90;
+  const bBase = bOVR / 90;
+  const aFormAtk = (aGF/30) * (aOpp/75);
+  const aFormDef = (aGA/30) * (aOpp/75);
+  const bFormAtk = (bGF/30) * (bOpp/75);
+  const bFormDef = (bGA/30) * (bOpp/75);
+  const aCond = aC.norm / 10;
+  const bCond = bC.norm / 10;
 
-// ────────────────────────────────────────────
-// #6 Uₙ 순환군
-// ────────────────────────────────────────────
-D.push({
-  rank:6, title:"\\(U_n\\) 순환군 증명",
-  src:[["2024 Q1 (\\(U_{2024}\\))","24"],["2023 Q6 [3점]","23"],["2022 Q7 [3점]","22"]],
-  prob:"임의의 정수 \\(n\\geq 1\\)에 대하여 \\(U_n=\\{z\\in\\mathbb{C}\\mid z^n=1\\}\\)이라 하자. \\(U_n\\)이 곱셈에 대하여 순환군임을 보이시오. (필기본 예 5.26, 3절)",
-  lemmas:[],
-  steps:[
-    {t:"생성원 제시",
-     b:"\\(\\zeta=e^{\\frac{2\\pi i}{n}}=\\cos\\dfrac{2\\pi}{n}+i\\sin\\dfrac{2\\pi}{n}\\)이라 하자.<br>\\(\\zeta^n=\\left(e^{\\frac{2\\pi i}{n}}\\right)^n=e^{2\\pi i}=1\\)이므로 \\(\\zeta\\in U_n\\)."},
-    {t:"군 확인 (정리 4.8 / 필기본 3절)",
-     b:"① <strong>닫힘:</strong> \\(z_1,z_2\\in U_n\\)이면 \\((z_1z_2)^n=z_1^nz_2^n=1\\cdot 1=1\\), 즉 \\(z_1z_2\\in U_n\\).<br>② <strong>단위원:</strong> \\(1^n=1\\)이므로 \\(1\\in U_n\\).<br>③ <strong>역원:</strong> \\(z\\in U_n\\)이면 \\((z^{-1})^n=(z^n)^{-1}=1\\)이므로 \\(z^{-1}\\in U_n\\)."},
-    {t:"\\(U_n=\\langle\\zeta\\rangle\\) 증명",
-     b:"\\(m=0,1,\\ldots,n-1\\)에 대해 \\(\\zeta^m\\in U_n\\)이고,<br>\\(0\\leq j&lt;k\\leq n-1\\)이면 \\(0&lt;k-j&lt;n\\)이므로 \\(\\zeta^{k-j}=e^{\\frac{2\\pi i(k-j)}{n}}\\neq 1\\), 즉 \\(\\zeta^j\\neq\\zeta^k\\).<br>따라서 \\(\\{\\zeta^0,\\zeta^1,\\ldots,\\zeta^{n-1}\\}\\)은 서로 다른 \\(n\\)개의 원소이고 \\(|U_n|=n\\)이므로<br>\\(U_n=\\{\\zeta^0,\\zeta^1,\\ldots,\\zeta^{n-1}\\}=\\langle\\zeta\\rangle\\). \\(\\square\\)<br><br>또한 필기본에 의해 \\((U_n,\\cdot)\\cong(\\mathbb{Z}_n,+_n)\\) (\\(\\varphi:\\alpha^k\\mapsto k\\)는 동형사상)."}
-  ],
-  keys:[
-    "생성원 \\(\\zeta=e^{2\\pi i/n}\\) 명시가 첫 단계",
-    {w:true, t:"교수님 첨삭 (2024 Q1): '\\(N=2024\\)라 하자'처럼 \\(n\\) 정의 먼저, 원소들이 서로 다름을 명시해야 감점 없음"},
-    "\\(U_n\\cong\\mathbb{Z}_n\\) 언급하면 추가 가점 가능"
-  ]
-});
+  // ── Attack / Defense power
+  let aAtk = aBase*0.4 + aFormAtk*0.35 + aCond*0.25;
+  let aDef = aBase*0.4 + (1-aFormDef)*0.35 + aCond*0.25;
+  let bAtk = bBase*0.4 + bFormAtk*0.35 + bCond*0.25;
+  let bDef = bBase*0.4 + (1-bFormDef)*0.35 + bCond*0.25;
 
-// ────────────────────────────────────────────
-// #7 조건 3개 부분군 판정
-// ────────────────────────────────────────────
-D.push({
-  rank:7, title:"조건 3개 부분군 판정",
-  src:[["2025 Q5 [3점]","25"],["2024 Q5 [4점]","24"]],
-  prob:"군 \\(G\\)의 부분집합 \\(H\\)가 다음 조건을 만족한다.<br>(i) \\(H\\)가 \\(G\\)의 이항연산 아래 닫혀있다.<br>(ii) \\(G\\)의 항등원이 \\(H\\)에 속한다.<br>(iii) 모든 \\(a\\in H\\)에 대하여 \\(a^{-1}\\in H\\)이다.<br>\\(H\\)가 \\(G\\)의 부분군임을 보이시오. (필기본 정리 5.12)",
-  lemmas:[],
-  steps:[
-    {t:"조건 1: 이항연산에 닫혀있음",
-     b:"조건 (i)에 의해 \\(\\forall a,b\\in H\\)에 대해 \\(ab\\in H\\). \\(*\\)는 \\(H\\)의 이항연산이다."},
-    {t:"조건 2: 결합법칙",
-     b:"\\(H\\subseteq G\\)이고 \\(G\\)에서 결합법칙이 성립하므로 \\(H\\)에서도 상속된다."},
-    {t:"조건 3: 항등원 존재",
-     b:"조건 (ii)에 의해 \\(G\\)의 항등원 \\(e\\in H\\)."},
-    {t:"조건 4: 역원 존재",
-     b:"조건 (iii)에 의해 \\(\\forall a\\in H\\)에 대해 \\(a^{-1}\\in H\\)."},
-    {t:"결론",
-     b:"부분군의 4조건이 모두 성립하므로 \\(H\\leq G\\). \\(\\square\\)"}
-  ],
-  keys:[
-    "조건 (i)(ii)(iii)을 각각 이항연산·항등원·역원에 대응시켜 인용",
-    "결합법칙은 '\\(G\\)에서 상속'이라는 이유 한 줄 필수",
-    {w:true, t:"교수님 첨삭 (2025, 1/4점): 조건 (i)을 다시 증명하려 하면 안 됨 — '조건 (i)에 의해'로 인용만 할 것"}
-  ]
-});
+  // Tactic modifiers
+  aAtk *= TACTIC[S.tacticA].atkMul;
+  aDef *= TACTIC[S.tacticA].defMul;
+  bAtk *= TACTIC[S.tacticB].atkMul;
+  bDef *= TACTIC[S.tacticB].defMul;
 
-// ────────────────────────────────────────────
-// #8 HK가 Abel군에서 부분군
-// ────────────────────────────────────────────
-D.push({
-  rank:8, title:"\\(HK\\)가 Abel군에서 부분군",
-  src:[["2025 Q4 [4점]","25"]],
-  prob:"\\(H\\)와 \\(K\\)는 Abel 군 \\(G\\)의 부분군이다. \\(HK=\\{xy\\mid x\\in H,\\,y\\in K\\}\\)라 할 때, \\(HK\\)가 \\(G\\)의 부분군임을 보이시오.",
-  lemmas:[],
-  steps:[
-    {t:"단위원 존재",
-     b:"\\(H\\leq G\\), \\(K\\leq G\\)이므로 \\(e\\in H\\)이고 \\(e\\in K\\). 따라서 \\(e=e\\cdot e\\in HK\\)."},
-    {t:"연산에 닫혀있음",
-     b:"\\(x_1y_1,\\,x_2y_2\\in HK\\) (\\(x_1,x_2\\in H\\), \\(y_1,y_2\\in K\\))에 대해<br>\\((x_1y_1)(x_2y_2)=x_1(y_1x_2)y_2\\).<br>\\(G\\)가 Abel군이므로 \\(y_1x_2=x_2y_1\\).<br>\\((x_1y_1)(x_2y_2)=(x_1x_2)(y_1y_2)\\in HK\\). (\\(\\because\\,x_1x_2\\in H\\), \\(y_1y_2\\in K\\))"},
-    {t:"역원 존재",
-     b:"\\(xy\\in HK\\)에 대해 \\((xy)^{-1}=y^{-1}x^{-1}\\).<br>\\(G\\)가 Abel군이므로 \\(y^{-1}x^{-1}=x^{-1}y^{-1}\\).<br>\\(x^{-1}\\in H\\), \\(y^{-1}\\in K\\)이므로 \\((xy)^{-1}=x^{-1}y^{-1}\\in HK\\)."},
-    {t:"결론",
-     b:"단위원·닫힘·역원이 모두 성립하므로 \\(HK\\leq G\\). \\(\\square\\)"}
-  ],
-  keys:[
-    "Abel(가환) 조건을 닫힘·역원 두 곳에서 반드시 명시",
-    "\\((xy)^{-1}=y^{-1}x^{-1}\\xrightarrow{\\text{Abel}}x^{-1}y^{-1}\\) 변환이 핵심",
-    "비Abel군에서는 \\(H\\) 또는 \\(K\\)가 정규부분군이어야 성립"
-  ]
-});
+  // Venue modifier (Team A only)
+  const vm = VENUE_MOD[S.venue];
+  aAtk *= vm.atkMul;
+  aDef *= vm.defMul;
 
-// ────────────────────────────────────────────
-// #9 D₄ 원소 나열
-// ────────────────────────────────────────────
-D.push({
-  rank:9, title:"\\(D_4\\) 원소 나열 (이면체군)",
-  src:[["2025 Q3 [5점]","25"],["2021 Q2","21"]],
-  prob:"이면체군(dihedral group) \\(D_4\\)의 원소를 서로 소인 순열치환의 곱으로 나타내시오. (2025 Q3, 필기본 정의 4.16·4.21)",
-  lemmas:[],
-  steps:[
-    {t:"\\(D_4\\) 구조 (필기본 \\(|D_n|=2n\\))",
-     b:"정사각형의 꼭짓점: 1(우상), 2(좌상), 3(좌하), 4(우하)<br>\\(D_4=\\{e,\\rho,\\rho^2,\\rho^3,\\mu,\\mu\\rho,\\mu\\rho^2,\\mu\\rho^3\\}\\), \\(|D_4|=8\\)<br><br>회전: \\(\\rho_0=e,\\quad\\rho_1=\\begin{pmatrix}1&2&3&4\\\\2&3&4&1\\end{pmatrix},\\quad\\rho_2=\\begin{pmatrix}1&2&3&4\\\\3&4&1&2\\end{pmatrix},\\quad\\rho_3=\\begin{pmatrix}1&2&3&4\\\\4&1&2&3\\end{pmatrix}\\)<br><br>반사: \\(\\mu_1=\\begin{pmatrix}1&2&3&4\\\\2&1&4&3\\end{pmatrix},\\quad\\mu_2=\\begin{pmatrix}1&2&3&4\\\\4&3&2&1\\end{pmatrix},\\quad\\delta_1=\\begin{pmatrix}1&2&3&4\\\\1&4&3&2\\end{pmatrix},\\quad\\delta_2=\\begin{pmatrix}1&2&3&4\\\\3&2&1&4\\end{pmatrix}\\)"},
-    {t:"서로소인 순환치환의 곱 (필기본 정리 4.8)",
-     b:"\\(\\rho_0=e\\)<br>\\(\\rho_1=(1\\;2\\;3\\;4)\\)<br>\\(\\rho_2=(1\\;3)(2\\;4)\\)<br>\\(\\rho_3=(1\\;4\\;3\\;2)\\)<br>\\(\\mu_1=(1\\;2)(3\\;4)\\)<br>\\(\\mu_2=(1\\;4)(2\\;3)\\)<br>\\(\\delta_1=(2\\;4)\\)<br>\\(\\delta_2=(1\\;3)\\)"},
-    {t:"관계식 확인",
-     b:"\\(\\rho_1^4=e\\), \\(\\delta_1^2=e\\), \\(\\delta_1\\rho_1=\\rho_1^{-1}\\delta_1\\). (필기본 예 4.18: \\(\\rho^n=e\\), \\(\\mu^2=e\\), \\(\\mu\\rho=\\rho^{-1}\\mu\\))"}
-  ],
-  keys:[
-    "원소 8개 (회전 4 + 반사 4) 모두 명시",
-    "\\(\\rho_2=(1\\;3)(2\\;4)\\)처럼 서로소 순환의 곱으로 표현",
-    {w:true, t:"교수님 채점 (2025 Q3, 2.5/5): 꼭짓점 번호 배치 먼저 명확히 하고 계산할 것"}
-  ]
-});
+  // ── Expected goals (λ)
+  const lambdaA = Math.max(0.05, BASE * (aAtk / Math.max(0.01, bDef)));
+  const lambdaB = Math.max(0.05, BASE * (bAtk / Math.max(0.01, aDef)));
 
-// ────────────────────────────────────────────
-// #10 Z_pq 자기동형사상 개수
-// ────────────────────────────────────────────
-D.push({
-  rank:10, title:"\\(\\mathbb{Z}_{pq}\\) 자기동형사상 개수",
-  src:[["2024 Q8 [3점]","24"]],
-  prob:"서로 다른 두 소수 \\(p,q\\)에 대하여 순환군 \\(\\mathbb{Z}_{pq}\\)에서 \\(\\mathbb{Z}_{pq}\\)로의 동형사상의 개수를 구하시오. (필기본 6절 정리, \\(\\mathbb{Z}_n^*\\))",
-  lemmas:[{
-    id:"보조정리 (필기본 6절)",
-    title:"\\(G=\\langle a\\rangle\\), \\(|G|=n\\)일 때 \\(\\langle a^s\\rangle=G\\Leftrightarrow\\gcd(s,n)=1\\)",
-    body:'<div class="lemma-proof"><p>(ii)에 의해 \\(|\\langle a^s\\rangle|=\\dfrac{n}{\\gcd(n,s)}\\). \\(\\langle a^s\\rangle=G\\Leftrightarrow|\\langle a^s\\rangle|=n\\Leftrightarrow\\gcd(s,n)=1\\).<br>따라서 \\(G\\)의 생성원의 개수는 \\(\\phi(n)\\)이다.</p><p>자기동형사상 \\(\\varphi:\\mathbb{Z}_n\\to\\mathbb{Z}_n\\)은 \\(\\varphi(1)\\)에 의해 완전히 결정되고, \\(\\varphi\\)가 동형사상 \\(\\Leftrightarrow\\varphi(1)\\)이 생성원 \\(\\Leftrightarrow\\gcd(\\varphi(1),n)=1\\). 따라서 \\(|\\text{Aut}(\\mathbb{Z}_n)|=\\phi(n)\\).</p></div>'
-  }],
-  steps:[
-    {t:"\\(\\mathbb{Z}_{pq}\\) 구조 확인",
-     b:"\\(p,q\\)가 서로 다른 소수이므로 \\(\\gcd(p,q)=1\\). \\(\\mathbb{Z}_{pq}\\)는 순환군."},
-    {t:"자기동형사상 수 계산",
-     b:"보조정리에 의해 \\(|\\text{Aut}(\\mathbb{Z}_{pq})|=\\phi(pq)\\).<br>\\(\\gcd(p,q)=1\\)이므로 \\(\\phi(pq)=\\phi(p)\\cdot\\phi(q)=(p-1)(q-1)\\)."},
-    {t:"결론",
-     b:"\\(\\mathbb{Z}_{pq}\\to\\mathbb{Z}_{pq}\\)의 동형사상의 수는 \\((p-1)(q-1)\\)개. \\(\\square\\)"}
-  ],
-  keys:[
-    "\\(\\gcd(p,q)=1\\) 명시 필수 (서로 다른 소수이므로)",
-    "\\(\\phi(pq)=(p-1)(q-1)\\) 공식",
-    {w:true, t:"교수님 첨삭: 계산과정 직접 명시, '\\((p-1)(q-1)\\)개이다'로 마무리"}
-  ]
-});
+  // ── Poisson probabilities
+  const pA = [], pB = [];
+  for (let k=0; k<=MAX_G; k++) { pA[k]=poissonPMF(lambdaA,k); pB[k]=poissonPMF(lambdaB,k); }
 
-// ────────────────────────────────────────────
-// 렌더링
-// ────────────────────────────────────────────
-var TB=document.getElementById("TB");
-var WR=document.getElementById("WR");
+  let winA=0, draw=0, winB=0;
+  const scoreMap = {};
+  for (let i=0; i<=MAX_G; i++) for (let j=0; j<=MAX_G; j++) {
+    const p = pA[i]*pB[j];
+    scoreMap[i+'-'+j] = p;
+    if (i>j) winA+=p; else if (i===j) draw+=p; else winB+=p;
+  }
+  const tot = winA+draw+winB;
+  const pwa = winA/tot, pdr = draw/tot, pwb = winB/tot;
 
-D.forEach(function(p,i){
-  var btn=document.createElement("button");
-  btn.className="tb"+(i===0?" on":"");
-  btn.innerHTML="<b>#"+p.rank+"</b>&nbsp;"+p.title.replace(/\\(\(.*?\)|\[.*?\])/g,"").replace(/\s+/g," ").trim().split(" ").slice(0,2).join(" ");
-  btn.onclick=function(){
-    document.querySelectorAll(".tb").forEach(function(b){b.classList.remove("on");});
-    document.querySelectorAll(".pn").forEach(function(b){b.classList.remove("on");});
-    btn.classList.add("on");
-    document.getElementById("p"+i).classList.add("on");
-    setTimeout(doRender,30);
+  const top3 = Object.entries(scoreMap).sort((a,b)=>b[1]-a[1]).slice(0,3);
+  const nameA = document.getElementById('teamAName').value || 'Team A';
+  const nameB = document.getElementById('teamBName').value || 'Team B';
+
+  // ── Render
+  goToStep(2);
+
+  document.getElementById('rNameA').textContent = nameA;
+  document.getElementById('rNameB').textContent = nameB;
+  document.getElementById('rRadarA').textContent = nameA;
+  document.getElementById('rRadarB').textContent = nameB;
+  document.getElementById('pLabelA').textContent = nameA + ' 승';
+  document.getElementById('pLabelB').textContent = nameB + ' 승';
+  document.getElementById('bLabelA').textContent = nameA + ' 승';
+  document.getElementById('bLabelB').textContent = nameB + ' 승';
+
+  document.getElementById('pWinA').textContent = (pwa*100).toFixed(1)+'%';
+  document.getElementById('pDraw').textContent  = (pdr*100).toFixed(1)+'%';
+  document.getElementById('pWinB').textContent  = (pwb*100).toFixed(1)+'%';
+
+  document.getElementById('barA').style.width = (pwa*100)+'%';
+  document.getElementById('barD').style.width = (pdr*100)+'%';
+  document.getElementById('barB').style.width = (pwb*100)+'%';
+
+  // Verdict
+  const vb = document.getElementById('verdictBox');
+  const vt = document.getElementById('verdictText');
+  if (pwa>pwb && pwa>pdr) {
+    vt.textContent = nameA+' 승리 예측';
+    vt.style.color = 'var(--cyan)';
+    vb.style.borderColor = 'rgba(34,211,238,0.3)'; vb.style.background = 'rgba(34,211,238,0.08)';
+  } else if (pwb>pwa && pwb>pdr) {
+    vt.textContent = nameB+' 승리 예측';
+    vt.style.color = 'var(--amber)';
+    vb.style.borderColor = 'rgba(245,158,11,0.3)'; vb.style.background = 'rgba(245,158,11,0.08)';
+  } else {
+    vt.textContent = '무승부 가능성 높음';
+    vt.style.color = '#94a3b8';
+    vb.style.borderColor = 'rgba(148,163,184,0.3)'; vb.style.background = 'rgba(148,163,184,0.05)';
+  }
+
+  document.getElementById('xgA').textContent = lambdaA.toFixed(2);
+  document.getElementById('xgB').textContent = lambdaB.toFixed(2);
+
+  // Top scores
+  document.getElementById('topScores').innerHTML = top3.map(([sc, p], i) => {
+    const [sa,sb] = sc.split('-');
+    return `<div class="score-chip flex justify-between items-center">
+      <span class="text-xs" style="color:#64748b">#${i+1}</span>
+      <span style="font-size:20px;font-weight:700;color:var(--cyan)">${sa} : ${sb}</span>
+      <span class="text-xs" style="color:#64748b">${(p*100).toFixed(2)}%</span>
+    </div>`;
+  }).join('');
+
+  // Detail bars
+  const renderDetail = (elId, atk, def, cond, tac, color) => {
+    const items = [
+      { label: '공격 지수', val: atk },
+      { label: '수비 지수', val: def },
+      { label: '컨디션 지수', val: cond },
+    ];
+    document.getElementById(elId).innerHTML =
+      items.map(it => {
+        const pct = Math.min(100, it.val * 100);
+        return `<div>
+          <div class="flex justify-between text-xs mb-1">
+            <span>${it.label}</span>
+            <span style="color:${color}">${it.val.toFixed(3)}</span>
+          </div>
+          <div class="w-full h-2 rounded-full" style="background:#1e2a3a">
+            <div class="h-full rounded-full" style="width:${pct}%;background:${color};transition:width 0.5s"></div>
+          </div>
+        </div>`;
+      }).join('') +
+      `<div class="mt-2 text-xs p-2 rounded" style="background:#1e2a3a;color:#64748b">
+        전술: <span style="color:${color}">${TACTIC[tac].label}</span> ·
+        홈/어웨이: <span style="color:${color}">${S.venue==='home'?'홈':S.venue==='away'?'어웨이':'중립'}</span>
+      </div>`;
   };
-  TB.appendChild(btn);
 
-  var pn=document.createElement("div");
-  pn.className="pn"+(i===0?" on":"");
-  pn.id="p"+i;
+  renderDetail('detailA', aAtk, aDef, aCond, S.tacticA, 'var(--cyan)');
+  renderDetail('detailB', bAtk, bDef, bCond, S.tacticB, 'var(--amber)');
 
-  var chips=p.src.map(function(s){
-    return '<span class="chip '+(yrcls[s[1]]||"chip21")+'">📌 '+s[0]+'</span>';
-  }).join("");
+  // Radar charts (delayed for DOM paint)
+  requestAnimationFrame(() => {
+    const formNormA = Math.min(1, aFormAtk / 0.6);
+    const formNormB = Math.min(1, bFormAtk / 0.6);
+    drawRadar('radarA', [Math.min(1,aAtk), Math.min(1,aDef), aCond, formNormA], 'cyan', nameA);
+    drawRadar('radarB', [Math.min(1,bAtk), Math.min(1,bDef), bCond, formNormB], 'amber', nameB);
+  });
+}
 
-  var lemH=p.lemmas.map(function(l){
-    return '<div class="lemma"><div class="ltitle">📗 '+l.id+': '+l.title+'</div>'+l.body+'</div>';
-  }).join("");
+// ── Radar chart (Canvas) ───────────────────────────────────────────────────
+function drawRadar(id, vals, colorKey, teamName) {
+  const canvas = document.getElementById(id);
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W/2, cy = H/2;
+  const R = Math.min(W,H)/2 - 42;
+  const AXES = ['공격력','수비력','컨디션','폼'];
+  const N = AXES.length;
+  const CLR = colorKey==='cyan' ? '#22d3ee' : '#f59e0b';
+  const FILL = colorKey==='cyan' ? 'rgba(34,211,238,0.15)' : 'rgba(245,158,11,0.15)';
 
-  var stpH=p.steps.map(function(s,si){
-    var hr=(si<p.steps.length-1)?'<hr class="s">':'';
-    return '<div class="step"><div class="sh"><span class="sn">'+(si+1)+'</span>'+s.t+'</div><div class="sb">'+s.b+'</div></div>'+hr;
-  }).join("");
+  ctx.clearRect(0,0,W,H);
 
-  var keyH=p.keys.map(function(k){
-    if(typeof k==="object"&&k.w) return '<li class="warn">'+k.t+'</li>';
-    return '<li>'+k+'</li>';
-  }).join("");
+  // Grid rings
+  for (let ring=1; ring<=5; ring++) {
+    const r = R/5*ring;
+    ctx.beginPath();
+    for (let i=0; i<N; i++) {
+      const a = Math.PI*2/N*i - Math.PI/2;
+      const x = cx + r*Math.cos(a), y = cy + r*Math.sin(a);
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = ring===5 ? '#2d3f55' : '#1a2236';
+    ctx.lineWidth = ring===5 ? 1.5 : 1;
+    ctx.stroke();
+  }
 
-  pn.innerHTML=
-    '<div class="rbadge">🏆 빈도 '+p.rank+'위</div>'+
-    '<div class="chips">'+chips+'</div>'+
-    '<div class="card">'+
-      '<div class="ctitle">'+p.title+'</div>'+
-      '<div class="plabel">📝 문제 원문</div>'+
-      '<div class="pbox">'+p.prob+'</div>'+
-      (lemH?'<button class="tog" onclick="tog(this)">📗 보조정리 <span class="ti">▼</span></button><div class="tc"><div class="sbox">'+lemH+'</div></div>':'')+
-      '<button class="tog" onclick="tog(this)">✏️ 풀이 보기 <span class="ti">▼</span></button>'+
-      '<div class="tc"><div class="sbox">'+stpH+'</div></div>'+
-      '<button class="tog" onclick="tog(this)">⚑ 핵심 포인트 <span class="ti">▼</span></button>'+
-      '<div class="tc"><div class="kbox"><div class="ktitle">시험에서 놓치기 쉬운 포인트</div><ul class="kl">'+keyH+'</ul></div></div>'+
-    '</div>';
+  // Axis lines
+  for (let i=0; i<N; i++) {
+    const a = Math.PI*2/N*i - Math.PI/2;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+R*Math.cos(a), cy+R*Math.sin(a));
+    ctx.strokeStyle = '#1e2a3a';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
 
-  WR.appendChild(pn);
-});
+  // Labels
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = 'bold 12px Segoe UI';
+  ctx.fillStyle = '#94a3b8';
+  for (let i=0; i<N; i++) {
+    const a = Math.PI*2/N*i - Math.PI/2;
+    ctx.fillText(AXES[i], cx+(R+24)*Math.cos(a), cy+(R+24)*Math.sin(a));
+  }
 
-setTimeout(doRender,100);
+  // Data polygon
+  const clamped = vals.map(v => Math.min(1, Math.max(0, v||0)));
+  ctx.beginPath();
+  for (let i=0; i<N; i++) {
+    const a = Math.PI*2/N*i - Math.PI/2;
+    const r = R*clamped[i];
+    const x = cx+r*Math.cos(a), y = cy+r*Math.sin(a);
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = FILL;
+  ctx.fill();
+  ctx.strokeStyle = CLR;
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Data points + value labels
+  for (let i=0; i<N; i++) {
+    const a = Math.PI*2/N*i - Math.PI/2;
+    const r = R*clamped[i];
+    const x = cx+r*Math.cos(a), y = cy+r*Math.sin(a);
+    ctx.beginPath();
+    ctx.arc(x,y,4,0,Math.PI*2);
+    ctx.fillStyle = CLR;
+    ctx.fill();
+
+    // value near point
+    ctx.font = '10px Segoe UI';
+    ctx.fillStyle = '#f1f5f9';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const ox = 12*Math.cos(a), oy = 12*Math.sin(a);
+    ctx.fillText(Math.round(clamped[i]*100), x+ox, y+oy);
+  }
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+updateCond('a');
+updateCond('b');
 </script>
 </body>
 </html>
