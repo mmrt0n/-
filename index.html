@@ -7,161 +7,59 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root {
-    --bg: #0a0e1a;
-    --card: #111827;
-    --cyan: #22d3ee;
-    --amber: #f59e0b;
-    --text: #f1f5f9;
-    --border: #1e2a3a;
-    --card2: #1a2236;
+    --bg: #0a0e1a; --card: #111827; --card2: #1a2236;
+    --cyan: #22d3ee; --amber: #f59e0b; --text: #f1f5f9;
+    --border: #1e2a3a; --muted: #64748b;
   }
   body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
+  .card  { background: var(--card);  border: 1px solid var(--border); border-radius: 12px; }
   .card2 { background: var(--card2); border: 1px solid var(--border); border-radius: 8px; }
 
-  input[type=range] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 6px;
-    border-radius: 3px;
-    background: #1e2a3a;
-    outline: none;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: var(--cyan);
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(34,211,238,0.5);
-  }
-  input[type=range].amber::-webkit-slider-thumb {
-    background: var(--amber);
-    box-shadow: 0 0 8px rgba(245,158,11,0.5);
-  }
-  input[type=range]::-moz-range-thumb {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: var(--cyan);
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 0 8px rgba(34,211,238,0.5);
-  }
-  input[type=range].amber::-moz-range-thumb { background: var(--amber); }
+  /* ── Sliders ── */
+  input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:3px; background:#1e2a3a; outline:none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:var(--cyan); cursor:pointer; box-shadow:0 0 8px rgba(34,211,238,.5); }
+  input[type=range].amber::-webkit-slider-thumb { background:var(--amber); box-shadow:0 0 8px rgba(245,158,11,.5); }
+  input[type=range]::-moz-range-thumb { width:18px; height:18px; border-radius:50%; background:var(--cyan); cursor:pointer; border:none; }
+  input[type=range].amber::-moz-range-thumb { background:var(--amber); }
 
-  input[type=number] {
-    background: #1e2a3a;
-    border: 1px solid #2d3f55;
-    border-radius: 6px;
-    color: var(--text);
-    padding: 6px 10px;
-    width: 80px;
-    text-align: center;
-  }
-  input[type=number]:focus { outline: none; border-color: var(--cyan); }
+  /* ── Inputs ── */
+  input[type=number] { background:#1e2a3a; border:1px solid #2d3f55; border-radius:6px; color:var(--text); padding:6px 10px; width:100%; text-align:center; }
+  input[type=number]:focus { outline:none; border-color:var(--cyan); }
+  input[type=text] { outline:none; }
 
-  input[type=text] {
-    outline: none;
-  }
+  /* ── Buttons ── */
+  .tactic-btn { background:#1e2a3a; border:1px solid #2d3f55; border-radius:8px; padding:8px 12px; cursor:pointer; color:#94a3b8; font-size:13px; transition:all .2s; text-align:center; }
+  .tactic-btn:hover { border-color:var(--cyan); color:var(--text); }
+  .tactic-btn.sel-a { background:rgba(34,211,238,.15); border-color:var(--cyan); color:var(--cyan); }
+  .tactic-btn.sel-b { background:rgba(245,158,11,.15); border-color:var(--amber); color:var(--amber); }
 
-  .tactic-btn {
-    background: #1e2a3a;
-    border: 1px solid #2d3f55;
-    border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    color: #94a3b8;
-    font-size: 13px;
-    transition: all 0.2s;
-    text-align: center;
-  }
-  .tactic-btn:hover { border-color: var(--cyan); color: var(--text); }
-  .tactic-btn.selected-a { background: rgba(34,211,238,0.15); border-color: var(--cyan); color: var(--cyan); }
-  .tactic-btn.selected-b { background: rgba(245,158,11,0.15); border-color: var(--amber); color: var(--amber); }
+  .venue-btn { background:#1e2a3a; border:1px solid #2d3f55; border-radius:8px; padding:8px 16px; cursor:pointer; color:#94a3b8; font-size:13px; transition:all .2s; }
+  .venue-btn:hover, .venue-btn.selected { border-color:var(--cyan); }
+  .venue-btn.selected { background:rgba(34,211,238,.15); color:var(--cyan); }
 
-  .venue-btn {
-    background: #1e2a3a;
-    border: 1px solid #2d3f55;
-    border-radius: 8px;
-    padding: 8px 16px;
-    cursor: pointer;
-    color: #94a3b8;
-    font-size: 13px;
-    transition: all 0.2s;
-  }
-  .venue-btn:hover { border-color: var(--cyan); }
-  .venue-btn.selected { background: rgba(34,211,238,0.15); border-color: var(--cyan); color: var(--cyan); }
+  .predict-btn { background:linear-gradient(135deg,var(--cyan),#0891b2); border:none; border-radius:10px; color:#0a0e1a; font-weight:700; font-size:16px; padding:14px 40px; cursor:pointer; transition:all .2s; box-shadow:0 0 20px rgba(34,211,238,.3); }
+  .predict-btn:hover { transform:translateY(-2px); box-shadow:0 4px 24px rgba(34,211,238,.5); }
+  .back-btn { background:transparent; border:1px solid #2d3f55; border-radius:8px; color:#94a3b8; padding:8px 20px; cursor:pointer; font-size:14px; transition:all .2s; }
+  .back-btn:hover { border-color:var(--cyan); color:var(--cyan); }
 
-  .predict-btn {
-    background: linear-gradient(135deg, var(--cyan), #0891b2);
-    border: none;
-    border-radius: 10px;
-    color: #0a0e1a;
-    font-weight: 700;
-    font-size: 16px;
-    padding: 14px 40px;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 0 20px rgba(34,211,238,0.3);
-  }
-  .predict-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 24px rgba(34,211,238,0.5); }
+  /* ── Result UI ── */
+  .prob-big  { font-size:42px; font-weight:800; line-height:1; }
+  .prob-label{ font-size:12px; color:var(--muted); margin-top:4px; }
+  .section-title { font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .score-chip { background:#1a2236; border:1px solid #2d3f55; border-radius:8px; padding:8px 16px; }
 
-  .back-btn {
-    background: transparent;
-    border: 1px solid #2d3f55;
-    border-radius: 8px;
-    color: #94a3b8;
-    padding: 8px 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.2s;
-  }
-  .back-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+  /* ── Model comparison table ── */
+  .model-row { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; }
+  .model-row:last-child { border-bottom:none; }
 
-  .prob-big { font-size: 42px; font-weight: 800; line-height: 1; }
-  .prob-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+  .vs-badge { background:linear-gradient(135deg,#1a2236,#0a0e1a); border:2px solid var(--amber); border-radius:50%; width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:var(--amber); box-shadow:0 0 16px rgba(245,158,11,.3); flex-shrink:0; }
 
-  .score-chip {
-    background: #1a2236;
-    border: 1px solid #2d3f55;
-    border-radius: 8px;
-    padding: 8px 16px;
-    font-size: 14px;
-    text-align: center;
-  }
+  .step-dot { width:8px; height:8px; border-radius:50%; background:#1e2a3a; transition:all .3s; }
+  .step-dot.active { background:var(--cyan); box-shadow:0 0 8px rgba(34,211,238,.5); }
+  .step-dot.done { background:#0891b2; }
 
-  .section-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #1e2a3a;
-  }
-
-  .vs-badge {
-    background: linear-gradient(135deg, #1a2236, #0a0e1a);
-    border: 2px solid var(--amber);
-    border-radius: 50%;
-    width: 48px; height: 48px;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 14px; color: var(--amber);
-    box-shadow: 0 0 16px rgba(245,158,11,0.3);
-    flex-shrink: 0;
-  }
-
-  .step-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #1e2a3a;
-    transition: all 0.3s;
-  }
-  .step-dot.active { background: var(--cyan); box-shadow: 0 0 8px rgba(34,211,238,0.5); }
-  .step-dot.done { background: #0891b2; }
+  /* confidence ring */
+  .conf-ring { position:relative; display:inline-flex; align-items:center; justify-content:center; }
 </style>
 </head>
 <body class="min-h-screen py-8 px-4">
@@ -173,17 +71,17 @@
       <span style="font-size:24px">⚽</span>
       <h1 class="text-2xl font-bold" style="color:var(--cyan)">FOOTBALL PREDICTOR</h1>
     </div>
-    <p class="text-sm" style="color:#64748b">국가대표 경기 승률 예측 · Poisson Distribution Model</p>
+    <p class="text-sm" style="color:var(--muted)">Poisson · Dixon-Coles · Elo Ordered Probit · Ensemble</p>
   </div>
 
-  <!-- Step Dots -->
+  <!-- Step dots -->
   <div class="flex gap-2 justify-center mb-6">
     <div class="step-dot active" id="dot0"></div>
     <div class="step-dot" id="dot1"></div>
     <div class="step-dot" id="dot2"></div>
   </div>
 
-  <!-- ========== STEP 0: Team Selection ========== -->
+  <!-- ══ STEP 0 ══════════════════════════════════════════════════════ -->
   <div id="step0">
     <div class="card p-6 mb-4">
       <h2 class="text-lg font-bold text-center mb-6" style="color:var(--cyan)">팀 선택</h2>
@@ -194,9 +92,7 @@
             class="w-full p-3 rounded-lg text-center font-bold text-base"
             style="background:#1e2a3a;border:2px solid var(--cyan);color:var(--cyan)">
         </div>
-        <div class="flex justify-center">
-          <div class="vs-badge">VS</div>
-        </div>
+        <div class="flex justify-center"><div class="vs-badge">VS</div></div>
         <div>
           <div class="section-title">TEAM B</div>
           <input type="text" id="teamBName" value="Japan" placeholder="Team B"
@@ -210,57 +106,61 @@
     </div>
   </div>
 
-  <!-- ========== STEP 1: Variables ========== -->
+  <!-- ══ STEP 1 ══════════════════════════════════════════════════════ -->
   <div id="step1" class="hidden">
     <div class="flex items-center justify-between mb-4">
       <button class="back-btn" onclick="goToStep(0)">← 뒤로</button>
-      <span class="text-sm" style="color:#64748b">변수 입력</span>
+      <span class="text-sm" style="color:var(--muted)">변수 입력</span>
     </div>
 
     <!-- Venue -->
     <div class="card p-4 mb-4">
       <div class="section-title">경기 조건 (Team A 기준)</div>
       <div class="flex gap-3 flex-wrap">
-        <button class="venue-btn selected" data-venue="home" onclick="selectVenue('home')">🏟️ 홈</button>
-        <button class="venue-btn" data-venue="neutral" onclick="selectVenue('neutral')">⚖️ 중립</button>
-        <button class="venue-btn" data-venue="away" onclick="selectVenue('away')">✈️ 어웨이</button>
+        <button class="venue-btn selected" data-venue="home"    onclick="selectVenue('home')">🏟️ 홈</button>
+        <button class="venue-btn"          data-venue="neutral" onclick="selectVenue('neutral')">⚖️ 중립</button>
+        <button class="venue-btn"          data-venue="away"    onclick="selectVenue('away')">✈️ 어웨이</button>
       </div>
     </div>
 
-    <!-- Team columns -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-      <!-- TEAM A column -->
+      <!-- ── Team A ── -->
       <div class="card p-5">
-        <h3 class="font-bold text-base mb-4 pb-2" id="colLabelA" style="color:var(--cyan);border-bottom:1px solid rgba(34,211,238,0.2)">South Korea</h3>
+        <h3 class="font-bold text-base mb-4 pb-2" id="colLabelA"
+          style="color:var(--cyan);border-bottom:1px solid rgba(34,211,238,.2)">South Korea</h3>
 
+        <!-- OVR -->
         <div class="mb-5">
           <div class="section-title">팀 기본 강도</div>
-          <div class="flex justify-between text-sm mb-1"><span>FIFA OVR</span><span style="color:var(--cyan)" id="aOVRVal">75</span></div>
+          <div class="flex justify-between text-sm mb-1">
+            <span>FIFA OVR</span><span style="color:var(--cyan)" id="aOVRVal">75</span>
+          </div>
           <input type="range" id="aOVR" min="60" max="90" value="75"
             oninput="document.getElementById('aOVRVal').textContent=this.value">
         </div>
 
+        <!-- Form -->
         <div class="mb-5">
           <div class="section-title">최근 10경기 폼</div>
           <div class="grid grid-cols-2 gap-3 mb-3">
             <div class="text-center">
-              <div class="text-xs mb-1" style="color:#64748b">득점 합계</div>
-              <input type="number" id="aGF" min="0" max="30" value="12" style="width:100%">
+              <div class="text-xs mb-1" style="color:var(--muted)">득점 합계</div>
+              <input type="number" id="aGF" min="0" max="30" value="12">
             </div>
             <div class="text-center">
-              <div class="text-xs mb-1" style="color:#64748b">실점 합계</div>
-              <input type="number" id="aGA" min="0" max="30" value="8" style="width:100%">
+              <div class="text-xs mb-1" style="color:var(--muted)">실점 합계</div>
+              <input type="number" id="aGA" min="0" max="30" value="8">
             </div>
           </div>
           <div class="flex justify-between text-xs mb-1">
-            <span>상대팀 평균 OVR</span>
-            <span style="color:var(--cyan)" id="aOppVal">72</span>
+            <span>상대팀 평균 OVR</span><span style="color:var(--cyan)" id="aOppVal">72</span>
           </div>
           <input type="range" id="aOpp" min="60" max="90" value="72"
             oninput="document.getElementById('aOppVal').textContent=this.value">
         </div>
 
+        <!-- Condition -->
         <div class="mb-5">
           <div class="section-title">선수 컨디션 지수</div>
           <div class="space-y-3">
@@ -271,7 +171,9 @@
               </div>
               <input type="range" id="aGK" min="0" max="15" value="4"
                 oninput="document.getElementById('aGKVal').textContent=this.value;updateCond('a')">
-              <div class="text-xs mt-1" style="color:#64748b">Form = <span id="aGKForm">4.80</span></div>
+              <div class="text-xs mt-1" style="color:var(--muted)">
+                GK Form = <span id="aGKForm">4.80</span> / 6.0
+              </div>
             </div>
             <div class="card2 p-3">
               <div class="flex justify-between text-xs mb-1">
@@ -298,7 +200,7 @@
                 oninput="document.getElementById('aFWVal').textContent=parseFloat(this.value).toFixed(1);updateCond('a')">
             </div>
           </div>
-          <div class="mt-3 p-3 rounded-lg" style="background:rgba(34,211,238,0.05);border:1px solid rgba(34,211,238,0.15)">
+          <div class="mt-3 p-3 rounded-lg" style="background:rgba(34,211,238,.05);border:1px solid rgba(34,211,238,.15)">
             <div class="flex justify-between text-sm">
               <span>팀 컨디션 지수</span>
               <span class="font-bold" style="color:var(--cyan)" id="aCondVal">6.42</span>
@@ -309,24 +211,28 @@
           </div>
         </div>
 
+        <!-- Tactic -->
         <div>
           <div class="section-title">전술 스타일</div>
           <div class="grid grid-cols-2 gap-2">
-            <button class="tactic-btn selected-a" data-tactic="press" data-team="a" onclick="selectTactic('a','press')">🔥 고압박</button>
-            <button class="tactic-btn" data-tactic="poss" data-team="a" onclick="selectTactic('a','poss')">🎯 점유율</button>
-            <button class="tactic-btn" data-tactic="counter" data-team="a" onclick="selectTactic('a','counter')">⚡ 카운터</button>
-            <button class="tactic-btn" data-tactic="def" data-team="a" onclick="selectTactic('a','def')">🛡️ 수비적</button>
+            <button class="tactic-btn sel-a" data-tactic="press"   data-team="a" onclick="selectTactic('a','press')">🔥 고압박</button>
+            <button class="tactic-btn"       data-tactic="poss"    data-team="a" onclick="selectTactic('a','poss')">🎯 점유율</button>
+            <button class="tactic-btn"       data-tactic="counter" data-team="a" onclick="selectTactic('a','counter')">⚡ 카운터</button>
+            <button class="tactic-btn"       data-tactic="def"     data-team="a" onclick="selectTactic('a','def')">🛡️ 수비적</button>
           </div>
         </div>
       </div>
 
-      <!-- TEAM B column -->
+      <!-- ── Team B ── -->
       <div class="card p-5">
-        <h3 class="font-bold text-base mb-4 pb-2" id="colLabelB" style="color:var(--amber);border-bottom:1px solid rgba(245,158,11,0.2)">Japan</h3>
+        <h3 class="font-bold text-base mb-4 pb-2" id="colLabelB"
+          style="color:var(--amber);border-bottom:1px solid rgba(245,158,11,.2)">Japan</h3>
 
         <div class="mb-5">
           <div class="section-title">팀 기본 강도</div>
-          <div class="flex justify-between text-sm mb-1"><span>FIFA OVR</span><span style="color:var(--amber)" id="bOVRVal">73</span></div>
+          <div class="flex justify-between text-sm mb-1">
+            <span>FIFA OVR</span><span style="color:var(--amber)" id="bOVRVal">73</span>
+          </div>
           <input type="range" id="bOVR" min="60" max="90" value="73" class="amber"
             oninput="document.getElementById('bOVRVal').textContent=this.value">
         </div>
@@ -335,17 +241,16 @@
           <div class="section-title">최근 10경기 폼</div>
           <div class="grid grid-cols-2 gap-3 mb-3">
             <div class="text-center">
-              <div class="text-xs mb-1" style="color:#64748b">득점 합계</div>
-              <input type="number" id="bGF" min="0" max="30" value="10" style="width:100%">
+              <div class="text-xs mb-1" style="color:var(--muted)">득점 합계</div>
+              <input type="number" id="bGF" min="0" max="30" value="10">
             </div>
             <div class="text-center">
-              <div class="text-xs mb-1" style="color:#64748b">실점 합계</div>
-              <input type="number" id="bGA" min="0" max="30" value="9" style="width:100%">
+              <div class="text-xs mb-1" style="color:var(--muted)">실점 합계</div>
+              <input type="number" id="bGA" min="0" max="30" value="9">
             </div>
           </div>
           <div class="flex justify-between text-xs mb-1">
-            <span>상대팀 평균 OVR</span>
-            <span style="color:var(--amber)" id="bOppVal">70</span>
+            <span>상대팀 평균 OVR</span><span style="color:var(--amber)" id="bOppVal">70</span>
           </div>
           <input type="range" id="bOpp" min="60" max="90" value="70" class="amber"
             oninput="document.getElementById('bOppVal').textContent=this.value">
@@ -361,7 +266,9 @@
               </div>
               <input type="range" id="bGK" min="0" max="15" value="5" class="amber"
                 oninput="document.getElementById('bGKVal').textContent=this.value;updateCond('b')">
-              <div class="text-xs mt-1" style="color:#64748b">Form = <span id="bGKForm">4.50</span></div>
+              <div class="text-xs mt-1" style="color:var(--muted)">
+                GK Form = <span id="bGKForm">4.50</span> / 6.0
+              </div>
             </div>
             <div class="card2 p-3">
               <div class="flex justify-between text-xs mb-1">
@@ -388,7 +295,7 @@
                 oninput="document.getElementById('bFWVal').textContent=parseFloat(this.value).toFixed(1);updateCond('b')">
             </div>
           </div>
-          <div class="mt-3 p-3 rounded-lg" style="background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15)">
+          <div class="mt-3 p-3 rounded-lg" style="background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15)">
             <div class="flex justify-between text-sm">
               <span>팀 컨디션 지수</span>
               <span class="font-bold" style="color:var(--amber)" id="bCondVal">5.89</span>
@@ -402,10 +309,10 @@
         <div>
           <div class="section-title">전술 스타일</div>
           <div class="grid grid-cols-2 gap-2">
-            <button class="tactic-btn selected-b" data-tactic="poss" data-team="b" onclick="selectTactic('b','poss')">🎯 점유율</button>
-            <button class="tactic-btn" data-tactic="press" data-team="b" onclick="selectTactic('b','press')">🔥 고압박</button>
-            <button class="tactic-btn" data-tactic="counter" data-team="b" onclick="selectTactic('b','counter')">⚡ 카운터</button>
-            <button class="tactic-btn" data-tactic="def" data-team="b" onclick="selectTactic('b','def')">🛡️ 수비적</button>
+            <button class="tactic-btn sel-b" data-tactic="poss"    data-team="b" onclick="selectTactic('b','poss')">🎯 점유율</button>
+            <button class="tactic-btn"       data-tactic="press"   data-team="b" onclick="selectTactic('b','press')">🔥 고압박</button>
+            <button class="tactic-btn"       data-tactic="counter" data-team="b" onclick="selectTactic('b','counter')">⚡ 카운터</button>
+            <button class="tactic-btn"       data-tactic="def"     data-team="b" onclick="selectTactic('b','def')">🛡️ 수비적</button>
           </div>
         </div>
       </div>
@@ -416,25 +323,25 @@
     </div>
   </div>
 
-  <!-- ========== STEP 2: Results ========== -->
+  <!-- ══ STEP 2 ══════════════════════════════════════════════════════ -->
   <div id="step2" class="hidden">
     <div class="flex items-center justify-between mb-4">
       <button class="back-btn" onclick="goToStep(1)">← 다시 설정</button>
-      <span class="text-sm" style="color:#64748b">예측 결과</span>
+      <span class="text-sm" style="color:var(--muted)">예측 결과 (앙상블)</span>
     </div>
 
-    <!-- Main result card -->
+    <!-- ① Main result -->
     <div class="card p-6 mb-4">
       <div class="flex justify-between items-center mb-5">
         <span class="font-bold text-lg" style="color:var(--cyan)" id="rNameA">South Korea</span>
-        <span class="text-xs px-3 py-1 rounded-full" style="background:#1e2a3a;color:#64748b">MATCH PREDICTION</span>
+        <span class="text-xs px-3 py-1 rounded-full" style="background:#1e2a3a;color:var(--muted)">ENSEMBLE RESULT</span>
         <span class="font-bold text-lg" style="color:var(--amber)" id="rNameB">Japan</span>
       </div>
 
       <div class="grid grid-cols-3 gap-2 mb-5 text-center">
         <div>
           <div class="prob-big" style="color:var(--cyan)" id="pWinA">--%</div>
-          <div class="prob-label" id="pLabelA">Team A 승</div>
+          <div class="prob-label" id="pLabelA">승</div>
         </div>
         <div>
           <div class="prob-big" style="color:#94a3b8" id="pDraw">--%</div>
@@ -442,52 +349,105 @@
         </div>
         <div>
           <div class="prob-big" style="color:var(--amber)" id="pWinB">--%</div>
-          <div class="prob-label" id="pLabelB">Team B 승</div>
+          <div class="prob-label" id="pLabelB">승</div>
         </div>
       </div>
 
-      <!-- Gradient probability bar -->
+      <!-- Gradient bar -->
       <div class="w-full h-8 rounded-full overflow-hidden flex mb-1">
         <div class="h-full transition-all" id="barA" style="width:40%;background:linear-gradient(90deg,#22d3ee,#06b6d4)"></div>
         <div class="h-full transition-all" id="barD" style="width:20%;background:#374151"></div>
         <div class="h-full transition-all" id="barB" style="width:40%;background:linear-gradient(90deg,#d97706,#f59e0b)"></div>
       </div>
-      <div class="flex justify-between text-xs" style="color:#64748b">
-        <span id="bLabelA">Team A 승</span>
-        <span>무</span>
-        <span id="bLabelB">Team B 승</span>
+      <div class="flex justify-between text-xs mb-4" style="color:var(--muted)">
+        <span id="bLabelA">A 승</span><span>무</span><span id="bLabelB">B 승</span>
       </div>
 
-      <div class="mt-5 p-4 rounded-xl text-center" id="verdictBox"
-        style="background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2)">
-        <div class="text-xs mb-1" style="color:#64748b">예측 결과</div>
-        <div class="text-xl font-bold" id="verdictText" style="color:var(--cyan)">--</div>
+      <!-- Verdict + Confidence side by side -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="p-4 rounded-xl text-center" id="verdictBox"
+          style="background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2)">
+          <div class="text-xs mb-1" style="color:var(--muted)">예측 결과</div>
+          <div class="text-xl font-bold" id="verdictText" style="color:var(--cyan)">--</div>
+        </div>
+        <div class="p-4 rounded-xl" style="background:#1e2a3a;border:1px solid #2d3f55">
+          <div class="text-xs mb-2 text-center" style="color:var(--muted)">예측 신뢰도 (Shannon Entropy)</div>
+          <div class="flex items-center gap-3">
+            <div class="text-2xl font-bold" id="confVal" style="color:var(--cyan)">--%</div>
+            <div class="flex-1">
+              <div class="w-full h-3 rounded-full" style="background:#0a0e1a">
+                <div class="h-full rounded-full transition-all" id="confBar" style="width:0%;background:linear-gradient(90deg,#ef4444,#f59e0b,#22d3ee)"></div>
+              </div>
+              <div class="text-xs mt-1" style="color:var(--muted)" id="confDesc">계산 중...</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- xG + Top scores -->
+    <!-- ② xG + Top scores -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
       <div class="card p-5">
-        <div class="section-title">예상 기대 골 (xG)</div>
+        <div class="section-title">예상 기대 골 λ (Poisson λ)</div>
         <div class="flex justify-around items-center py-2">
           <div class="text-center">
             <div class="text-4xl font-black" style="color:var(--cyan)" id="xgA">1.35</div>
-            <div class="text-xs mt-1" style="color:#64748b">xG · Team A</div>
+            <div class="text-xs mt-1" style="color:var(--muted)">λ_A</div>
           </div>
           <div class="text-2xl" style="color:#374151">―</div>
           <div class="text-center">
             <div class="text-4xl font-black" style="color:var(--amber)" id="xgB">1.35</div>
-            <div class="text-xs mt-1" style="color:#64748b">xG · Team B</div>
+            <div class="text-xs mt-1" style="color:var(--muted)">λ_B</div>
           </div>
+        </div>
+        <div class="mt-3 text-xs text-center" style="color:var(--muted)">
+          λ = BASE_GOALS × (공격력 / 상대수비력)
         </div>
       </div>
       <div class="card p-5">
-        <div class="section-title">가장 확률 높은 스코어 TOP 3</div>
+        <div class="section-title">가장 확률 높은 스코어 TOP 3 (Poisson+DC)</div>
         <div class="space-y-2" id="topScores"></div>
       </div>
     </div>
 
-    <!-- Radar charts -->
+    <!-- ③ Model Comparison -->
+    <div class="card p-5 mb-4">
+      <div class="section-title">수학적 모델 비교</div>
+
+      <!-- Header row -->
+      <div class="model-row mb-1" style="font-size:11px;color:var(--muted)">
+        <div>모델</div>
+        <div class="text-center" style="color:var(--cyan)">A 승</div>
+        <div class="text-center">무승부</div>
+        <div class="text-center" style="color:var(--amber)">B 승</div>
+      </div>
+
+      <div id="modelTable"></div>
+
+      <!-- Legend -->
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="card2 p-3">
+          <div class="text-xs font-semibold mb-1" style="color:var(--cyan)">Poisson + Dixon-Coles</div>
+          <div class="text-xs" style="color:var(--muted)">
+            저득점(0-0, 1-1) 구간에 보정 계수 τ 적용. 실제 축구의 음의 상관관계(ρ≈-0.13)를 반영 — Dixon & Coles (1997)
+          </div>
+        </div>
+        <div class="card2 p-3">
+          <div class="text-xs font-semibold mb-1" style="color:var(--amber)">Elo 순서형 프로빗</div>
+          <div class="text-xs" style="color:var(--muted)">
+            FIFA OVR → 의사 Elo 변환 후, 절단점 c=0.31의 정규분포 모델로 승/무/패 3결과 확률 도출. 평균 무승부율 ≈24% 반영
+          </div>
+        </div>
+        <div class="card2 p-3">
+          <div class="text-xs font-semibold mb-1" style="color:#a78bfa)">앙상블</div>
+          <div class="text-xs" style="color:var(--muted)">
+            Poisson+DC(65%) + Elo(35%) 가중 평균. 서로 다른 정보원을 결합해 단일 모델의 편향을 줄임
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ Radar charts -->
     <div class="card p-5 mb-4">
       <div class="section-title">팀 종합 지수 레이더 차트</div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -502,7 +462,7 @@
       </div>
     </div>
 
-    <!-- Detail index bars -->
+    <!-- ⑤ Detail indices -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="card p-5">
         <div class="section-title">Team A 세부 지수</div>
@@ -513,11 +473,14 @@
         <div id="detailB" class="space-y-3"></div>
       </div>
     </div>
-  </div>
+  </div><!-- /step2 -->
 
-</div>
+</div><!-- /container -->
+
 <script>
-// ── State ──────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════════════════════
 const S = { venue: 'home', tacticA: 'press', tacticB: 'poss' };
 
 const TACTIC = {
@@ -533,12 +496,198 @@ const VENUE_MOD = {
   away:    { atkMul: 0.97, defMul: 0.95 },
 };
 
-// ── Navigation ─────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+//  MATH UTILITIES
+// ════════════════════════════════════════════════════════════════════
+const clamp = (v, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
+
+// Poisson PMF  P(X=k | λ) = λ^k · e^{-λ} / k!  (log-space for stability)
+function pois(lambda, k) {
+  if (lambda <= 0) return k === 0 ? 1 : 0;
+  let lp = -lambda + k * Math.log(lambda);
+  for (let i = 2; i <= k; i++) lp -= Math.log(i);
+  return Math.exp(lp);
+}
+
+// ── Dixon-Coles (1997) low-score correction ──────────────────────
+// Real football shows negative correlation between teams' goals in
+// the {0,1} range. Correction factor τ is applied to the score matrix.
+// With ρ < 0: boosts 0-0 and 1-1, reduces 0-1 and 1-0 vs plain Poisson.
+const DC_RHO = -0.13;   // empirical value from Dixon & Coles (1997)
+
+function dcTau(i, j, la, lb) {
+  if (i === 0 && j === 0) return Math.max(0, 1 - la * lb * DC_RHO);
+  if (i === 0 && j === 1) return Math.max(0, 1 + la * DC_RHO);
+  if (i === 1 && j === 0) return Math.max(0, 1 + lb * DC_RHO);
+  if (i === 1 && j === 1) return Math.max(0, 1 - DC_RHO);
+  return 1;
+}
+
+// ── Normal CDF (Abramowitz & Stegun 26.2.17, max |err| < 7.5e-8) ─
+function normCDF(x) {
+  const p = 0.2316419;
+  const b = [0.319381530, -0.356563782, 1.781477937, -1.821255978, 1.330274429];
+  const t   = 1 / (1 + p * Math.abs(x));
+  const pdf = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+  const poly = t * (b[0] + t * (b[1] + t * (b[2] + t * (b[3] + t * b[4]))));
+  const cdf  = 1 - pdf * poly;
+  return x >= 0 ? cdf : 1 - cdf;
+}
+
+// ── Shannon entropy of a 3-outcome distribution (bits) ───────────
+// H = -Σ p_i · log2(p_i).  Max = log2(3) ≈ 1.585 bits (uniform).
+// Normalized confidence = 1 - H / log2(3): 0 = no idea, 1 = certain.
+function entropy3(wa, dr, wb) {
+  const h = p => p > 1e-12 ? -p * Math.log2(p) : 0;
+  return h(wa) + h(dr) + h(wb);
+}
+const MAX_ENTROPY = Math.log2(3); // ≈ 1.585
+
+// ════════════════════════════════════════════════════════════════════
+//  CONDITION SCORE
+//  Fix: normalize EACH position input to [0,1] first so the weighted
+//  average is guaranteed in [0,1], making the 0–10 display accurate.
+//  Previous code mixed GK (max 6) with DF/MF/FW (max 10) before
+//  weighting, causing the denominator (4.6) to be wrong.
+// ════════════════════════════════════════════════════════════════════
+function calcCond(team) {
+  const t = team;
+  const gkGoals = parseFloat(document.getElementById(t + 'GK').value);
+  const df      = parseFloat(document.getElementById(t + 'DF').value);
+  const mf      = parseFloat(document.getElementById(t + 'MF').value);
+  const fw      = parseFloat(document.getElementById(t + 'FW').value);
+
+  // Each normalized to [0, 1]
+  const gkNorm = clamp(Math.max(0, 6.0 - gkGoals * 0.3) / 6.0);  // GK max form = 6.0
+  const dfNorm = df / 10.0;
+  const mfNorm = mf / 5.0;
+  const fwNorm = fw / 15.0;
+
+  // Weighted sum. Weights sum = 4.6 → result in [0, 1] exactly.
+  const cond = (gkNorm * 1.2 + dfNorm * 1.0 + mfNorm * 1.1 + fwNorm * 1.3) / 4.6;
+
+  document.getElementById(t + 'GKForm').textContent = (gkNorm * 6.0).toFixed(2);
+  document.getElementById(t + 'CondVal').textContent = (cond * 10).toFixed(2);
+  document.getElementById(t + 'CondBar').style.width = (cond * 100) + '%';
+
+  return { cond, gkNorm, dfNorm, mfNorm, fwNorm };
+}
+
+function updateCond(t) { calcCond(t); }
+
+// ════════════════════════════════════════════════════════════════════
+//  TEAM POWER
+//  Fix: clamp formAtk / formDef to [0,1] before use.
+//  Previous code allowed values > 1 when aGA=30 & aOpp=90, making
+//  (1 - formDef) go negative → nonsensical negative defense power.
+// ════════════════════════════════════════════════════════════════════
+const BASE_GOALS = 1.35;   // avg international goals per team per match
+const MAX_GOALS  = 8;
+
+function calcPowers(ovr, gf, ga, opp, condNorm, tactic, venueKey) {
+  const base    = ovr / 90;
+  const formAtk = clamp((gf / 30) * (opp / 75));  // opponent-strength adjusted
+  const formDef = clamp((ga / 30) * (opp / 75));  // clamped → no negative defense
+
+  let atk = base * 0.4 + formAtk * 0.35 + condNorm * 0.25;
+  let def = base * 0.4 + (1 - formDef) * 0.35 + condNorm * 0.25;
+
+  atk *= TACTIC[tactic].atkMul;
+  def *= TACTIC[tactic].defMul;
+
+  if (venueKey) {
+    atk *= VENUE_MOD[venueKey].atkMul;
+    def *= VENUE_MOD[venueKey].defMul;
+  }
+
+  return { atk, def, formAtk, formDef };
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  MODEL 1 + 2 : Poisson (plain) and Poisson + Dixon-Coles
+// ════════════════════════════════════════════════════════════════════
+function poissonModel(la, lb, applyDC) {
+  const raw = {};
+  let total = 0;
+
+  for (let i = 0; i <= MAX_GOALS; i++) {
+    for (let j = 0; j <= MAX_GOALS; j++) {
+      let p = pois(la, i) * pois(lb, j);
+      if (applyDC) p *= dcTau(i, j, la, lb);
+      raw[i + '-' + j] = p;
+      total += p;
+    }
+  }
+
+  let winA = 0, draw = 0, winB = 0;
+  const entries = [];
+
+  for (const [key, rp] of Object.entries(raw)) {
+    const p = rp / total;
+    raw[key] = p;
+    entries.push([key, p]);
+    const [a, b] = key.split('-').map(Number);
+    if (a > b) winA += p;
+    else if (a === b) draw += p;
+    else winB += p;
+  }
+
+  entries.sort((a, b) => b[1] - a[1]);
+  return { winA, draw, winB, top3: entries.slice(0, 3) };
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  MODEL 3 : Elo → Ordered Probit (three-outcome)
+//
+//  Step 1 — Derive pseudo-Elo from FIFA OVR + attack form:
+//    eloX = 1500 + (OVR − 75) × 15 + formAtk × 150
+//
+//  Step 2 — Ordered probit with two cut-points (symmetric):
+//    U ~ N(μ, 1),  μ = ΔElo / 400
+//    P(A wins)  = 1 − Φ(c − μ)
+//    P(B wins)  = 1 − Φ(c + μ)
+//    P(draw)    = 1 − P(A wins) − P(B wins)
+//
+//  Cut-point c = 0.31 is calibrated so that equal teams (μ=0) produce
+//  a draw probability of ≈ 24%, matching international football data.
+//    P(draw|equal) = 2·Φ(0.31) − 1 ≈ 2×0.622 − 1 = 0.244
+// ════════════════════════════════════════════════════════════════════
+const ELO_C = 0.31;
+
+function eloModel(ovrA, ovrB, formAtkA, formAtkB) {
+  const eloA = 1500 + (ovrA - 75) * 15 + formAtkA * 150;
+  const eloB = 1500 + (ovrB - 75) * 15 + formAtkB * 150;
+  const mu   = (eloA - eloB) / 400;
+
+  const winA = 1 - normCDF(ELO_C - mu);
+  const winB = 1 - normCDF(ELO_C + mu);
+  const draw = Math.max(0, 1 - winA - winB);
+
+  return { winA, draw, winB, eloA: Math.round(eloA), eloB: Math.round(eloB) };
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  ENSEMBLE  :  65% Poisson+DC  +  35% Elo
+// ════════════════════════════════════════════════════════════════════
+const W_DC  = 0.65;
+const W_ELO = 0.35;
+
+function ensemble(dc, elo) {
+  return {
+    winA: W_DC * dc.winA + W_ELO * elo.winA,
+    draw: W_DC * dc.draw + W_ELO * elo.draw,
+    winB: W_DC * dc.winB + W_ELO * elo.winB,
+  };
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  NAVIGATION / UI HELPERS
+// ════════════════════════════════════════════════════════════════════
 function goToStep(n) {
-  [0,1,2].forEach(i => {
-    document.getElementById('step'+i).classList.toggle('hidden', i!==n);
-    const d = document.getElementById('dot'+i);
-    d.classList.remove('active','done');
+  [0, 1, 2].forEach(i => {
+    document.getElementById('step' + i).classList.toggle('hidden', i !== n);
+    const d = document.getElementById('dot' + i);
+    d.classList.remove('active', 'done');
     if (i < n) d.classList.add('done');
     else if (i === n) d.classList.add('active');
   });
@@ -548,298 +697,261 @@ function goToStep(n) {
     document.getElementById('colLabelA').textContent = a;
     document.getElementById('colLabelB').textContent = b;
   }
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── Venue ──────────────────────────────────────────────────────────────────
 function selectVenue(v) {
   S.venue = v;
-  document.querySelectorAll('.venue-btn').forEach(b => b.classList.toggle('selected', b.dataset.venue===v));
+  document.querySelectorAll('.venue-btn').forEach(b =>
+    b.classList.toggle('selected', b.dataset.venue === v));
 }
 
-// ── Tactic ─────────────────────────────────────────────────────────────────
 function selectTactic(team, t) {
-  S['tactic'+team.toUpperCase()] = t;
+  S['tactic' + team.toUpperCase()] = t;
   document.querySelectorAll(`.tactic-btn[data-team="${team}"]`).forEach(b => {
-    b.classList.remove('selected-a','selected-b');
-    if (b.dataset.tactic === t) b.classList.add(team==='a'?'selected-a':'selected-b');
+    b.classList.remove('sel-a', 'sel-b');
+    if (b.dataset.tactic === t) b.classList.add(team === 'a' ? 'sel-a' : 'sel-b');
   });
 }
 
-// ── Condition calc ─────────────────────────────────────────────────────────
-function calcCond(team) {
-  const t = team;
-  const gkGoals = parseFloat(document.getElementById(t+'GK').value);
-  const dfScore = parseFloat(document.getElementById(t+'DF').value);
-  const mfScore = parseFloat(document.getElementById(t+'MF').value);
-  const fwScore = parseFloat(document.getElementById(t+'FW').value);
-
-  const gkForm = Math.max(0, 6.0 - gkGoals * 0.3);
-  const dfForm = dfScore;                // 0-10
-  const mfForm = mfScore * 2;            // 0-10
-  const fwForm = fwScore / 1.5;          // 0-10
-
-  // formula / 4.6 then clamp to 0-10
-  const raw = (gkForm*1.2 + dfForm*1.0 + mfForm*1.1 + fwForm*1.3) / 4.6;
-  const norm = Math.min(10, Math.max(0, raw));
-
-  const color = team==='a' ? 'var(--cyan)' : 'var(--amber)';
-  document.getElementById(t+'GKForm').textContent = gkForm.toFixed(2);
-  document.getElementById(t+'CondVal').textContent = norm.toFixed(2);
-  document.getElementById(t+'CondBar').style.width = (norm*10)+'%';
-  return { gkForm, dfForm, mfForm, fwForm, norm };
-}
-
-function updateCond(t) { calcCond(t); }
-
-// ── Poisson PMF ────────────────────────────────────────────────────────────
-function poissonPMF(lambda, k) {
-  if (lambda <= 0) return k===0 ? 1 : 0;
-  let lp = -lambda + k * Math.log(lambda);
-  for (let i=2; i<=k; i++) lp -= Math.log(i);
-  return Math.exp(lp);
-}
-
-// ── Main prediction ────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+//  MAIN PREDICT
+// ════════════════════════════════════════════════════════════════════
 function runPredict() {
-  const BASE = 1.35, MAX_G = 8;
+  const aOVR = parseInt(document.getElementById('aOVR').value);
+  const bOVR = parseInt(document.getElementById('bOVR').value);
+  const aGF  = Math.max(0, parseInt(document.getElementById('aGF').value) || 0);
+  const aGA  = Math.max(0, parseInt(document.getElementById('aGA').value) || 0);
+  const bGF  = Math.max(0, parseInt(document.getElementById('bGF').value) || 0);
+  const bGA  = Math.max(0, parseInt(document.getElementById('bGA').value) || 0);
+  const aOpp = parseInt(document.getElementById('aOpp').value);
+  const bOpp = parseInt(document.getElementById('bOpp').value);
 
-  const aOVR   = parseInt(document.getElementById('aOVR').value);
-  const bOVR   = parseInt(document.getElementById('bOVR').value);
-  const aGF    = Math.max(0, parseInt(document.getElementById('aGF').value)||0);
-  const aGA    = Math.max(0, parseInt(document.getElementById('aGA').value)||0);
-  const bGF    = Math.max(0, parseInt(document.getElementById('bGF').value)||0);
-  const bGA    = Math.max(0, parseInt(document.getElementById('bGA').value)||0);
-  const aOpp   = parseInt(document.getElementById('aOpp').value);
-  const bOpp   = parseInt(document.getElementById('bOpp').value);
+  const aCond = calcCond('a').cond;
+  const bCond = calcCond('b').cond;
 
-  const aC = calcCond('a');
-  const bC = calcCond('b');
+  const aP = calcPowers(aOVR, aGF, aGA, aOpp, aCond, S.tacticA, S.venue);
+  const bP = calcPowers(bOVR, bGF, bGA, bOpp, bCond, S.tacticB, null);
 
-  // ── Strength components
-  const aBase = aOVR / 90;
-  const bBase = bOVR / 90;
-  const aFormAtk = (aGF/30) * (aOpp/75);
-  const aFormDef = (aGA/30) * (aOpp/75);
-  const bFormAtk = (bGF/30) * (bOpp/75);
-  const bFormDef = (bGA/30) * (bOpp/75);
-  const aCond = aC.norm / 10;
-  const bCond = bC.norm / 10;
+  const la = Math.max(0.05, BASE_GOALS * (aP.atk / Math.max(0.01, bP.def)));
+  const lb = Math.max(0.05, BASE_GOALS * (bP.atk / Math.max(0.01, aP.def)));
 
-  // ── Attack / Defense power
-  let aAtk = aBase*0.4 + aFormAtk*0.35 + aCond*0.25;
-  let aDef = aBase*0.4 + (1-aFormDef)*0.35 + aCond*0.25;
-  let bAtk = bBase*0.4 + bFormAtk*0.35 + bCond*0.25;
-  let bDef = bBase*0.4 + (1-bFormDef)*0.35 + bCond*0.25;
+  const mPois = poissonModel(la, lb, false);
+  const mDC   = poissonModel(la, lb, true);
+  const mElo  = eloModel(aOVR, bOVR, aP.formAtk, bP.formAtk);
+  const mFin  = ensemble(mDC, mElo);
 
-  // Tactic modifiers
-  aAtk *= TACTIC[S.tacticA].atkMul;
-  aDef *= TACTIC[S.tacticA].defMul;
-  bAtk *= TACTIC[S.tacticB].atkMul;
-  bDef *= TACTIC[S.tacticB].defMul;
+  const conf  = clamp(1 - entropy3(mFin.winA, mFin.draw, mFin.winB) / MAX_ENTROPY);
 
-  // Venue modifier (Team A only)
-  const vm = VENUE_MOD[S.venue];
-  aAtk *= vm.atkMul;
-  aDef *= vm.defMul;
-
-  // ── Expected goals (λ)
-  const lambdaA = Math.max(0.05, BASE * (aAtk / Math.max(0.01, bDef)));
-  const lambdaB = Math.max(0.05, BASE * (bAtk / Math.max(0.01, aDef)));
-
-  // ── Poisson probabilities
-  const pA = [], pB = [];
-  for (let k=0; k<=MAX_G; k++) { pA[k]=poissonPMF(lambdaA,k); pB[k]=poissonPMF(lambdaB,k); }
-
-  let winA=0, draw=0, winB=0;
-  const scoreMap = {};
-  for (let i=0; i<=MAX_G; i++) for (let j=0; j<=MAX_G; j++) {
-    const p = pA[i]*pB[j];
-    scoreMap[i+'-'+j] = p;
-    if (i>j) winA+=p; else if (i===j) draw+=p; else winB+=p;
-  }
-  const tot = winA+draw+winB;
-  const pwa = winA/tot, pdr = draw/tot, pwb = winB/tot;
-
-  const top3 = Object.entries(scoreMap).sort((a,b)=>b[1]-a[1]).slice(0,3);
   const nameA = document.getElementById('teamAName').value || 'Team A';
   const nameB = document.getElementById('teamBName').value || 'Team B';
 
-  // ── Render
+  // ── render ──────────────────────────────────────────────────────
   goToStep(2);
 
-  document.getElementById('rNameA').textContent = nameA;
-  document.getElementById('rNameB').textContent = nameB;
-  document.getElementById('rRadarA').textContent = nameA;
-  document.getElementById('rRadarB').textContent = nameB;
+  // Names
+  ['rNameA','rRadarA'].forEach(id => document.getElementById(id).textContent = nameA);
+  ['rNameB','rRadarB'].forEach(id => document.getElementById(id).textContent = nameB);
   document.getElementById('pLabelA').textContent = nameA + ' 승';
   document.getElementById('pLabelB').textContent = nameB + ' 승';
   document.getElementById('bLabelA').textContent = nameA + ' 승';
   document.getElementById('bLabelB').textContent = nameB + ' 승';
 
-  document.getElementById('pWinA').textContent = (pwa*100).toFixed(1)+'%';
-  document.getElementById('pDraw').textContent  = (pdr*100).toFixed(1)+'%';
-  document.getElementById('pWinB').textContent  = (pwb*100).toFixed(1)+'%';
-
-  document.getElementById('barA').style.width = (pwa*100)+'%';
-  document.getElementById('barD').style.width = (pdr*100)+'%';
-  document.getElementById('barB').style.width = (pwb*100)+'%';
+  // Main probabilities
+  const fmt = p => (p * 100).toFixed(1) + '%';
+  document.getElementById('pWinA').textContent = fmt(mFin.winA);
+  document.getElementById('pDraw').textContent = fmt(mFin.draw);
+  document.getElementById('pWinB').textContent = fmt(mFin.winB);
+  document.getElementById('barA').style.width  = (mFin.winA * 100) + '%';
+  document.getElementById('barD').style.width  = (mFin.draw * 100) + '%';
+  document.getElementById('barB').style.width  = (mFin.winB * 100) + '%';
 
   // Verdict
   const vb = document.getElementById('verdictBox');
   const vt = document.getElementById('verdictText');
-  if (pwa>pwb && pwa>pdr) {
-    vt.textContent = nameA+' 승리 예측';
+  if (mFin.winA > mFin.winB && mFin.winA > mFin.draw) {
+    vt.textContent = nameA + ' 승리 예측';
     vt.style.color = 'var(--cyan)';
-    vb.style.borderColor = 'rgba(34,211,238,0.3)'; vb.style.background = 'rgba(34,211,238,0.08)';
-  } else if (pwb>pwa && pwb>pdr) {
-    vt.textContent = nameB+' 승리 예측';
+    vb.style.cssText += ';border-color:rgba(34,211,238,.3);background:rgba(34,211,238,.08)';
+  } else if (mFin.winB > mFin.winA && mFin.winB > mFin.draw) {
+    vt.textContent = nameB + ' 승리 예측';
     vt.style.color = 'var(--amber)';
-    vb.style.borderColor = 'rgba(245,158,11,0.3)'; vb.style.background = 'rgba(245,158,11,0.08)';
+    vb.style.cssText += ';border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.08)';
   } else {
     vt.textContent = '무승부 가능성 높음';
     vt.style.color = '#94a3b8';
-    vb.style.borderColor = 'rgba(148,163,184,0.3)'; vb.style.background = 'rgba(148,163,184,0.05)';
+    vb.style.cssText += ';border-color:rgba(148,163,184,.3);background:rgba(148,163,184,.05)';
   }
 
-  document.getElementById('xgA').textContent = lambdaA.toFixed(2);
-  document.getElementById('xgB').textContent = lambdaB.toFixed(2);
+  // Confidence
+  document.getElementById('confVal').textContent = (conf * 100).toFixed(0) + '%';
+  document.getElementById('confBar').style.width = (conf * 100) + '%';
+  document.getElementById('confDesc').textContent =
+    conf < 0.33 ? '낮음 — 세 결과 확률이 비슷함' :
+    conf < 0.66 ? '보통 — 한 결과가 우세함' :
+                  '높음 — 결과가 명확히 갈림';
 
-  // Top scores
-  document.getElementById('topScores').innerHTML = top3.map(([sc, p], i) => {
-    const [sa,sb] = sc.split('-');
+  // xG
+  document.getElementById('xgA').textContent = la.toFixed(2);
+  document.getElementById('xgB').textContent = lb.toFixed(2);
+
+  // Top scores (from DC model, already normalized)
+  document.getElementById('topScores').innerHTML = mDC.top3.map(([sc, p], i) => {
+    const [sa, sb] = sc.split('-');
+    const isDrawScore = sa === sb;
+    const color = sa > sb ? 'var(--cyan)' : sb > sa ? 'var(--amber)' : '#94a3b8';
     return `<div class="score-chip flex justify-between items-center">
-      <span class="text-xs" style="color:#64748b">#${i+1}</span>
-      <span style="font-size:20px;font-weight:700;color:var(--cyan)">${sa} : ${sb}</span>
-      <span class="text-xs" style="color:#64748b">${(p*100).toFixed(2)}%</span>
+      <span class="text-xs" style="color:var(--muted)">#${i + 1}</span>
+      <span style="font-size:20px;font-weight:700;color:${color}">${sa} : ${sb}</span>
+      <span class="text-xs" style="color:var(--muted)">${(p * 100).toFixed(2)}%</span>
     </div>`;
   }).join('');
 
-  // Detail bars
-  const renderDetail = (elId, atk, def, cond, tac, color) => {
+  // Model comparison table
+  const models = [
+    { label: '푸아송 (기본)',       badge: '', m: mPois },
+    { label: '푸아송 + Dixon-Coles', badge: '📐', m: mDC   },
+    { label: 'Elo 순서형 프로빗',    badge: '📊', m: mElo  },
+    { label: '앙상블 (최종)',        badge: '✨', m: mFin, bold: true },
+  ];
+  document.getElementById('modelTable').innerHTML = models.map(({ label, badge, m, bold }) => {
+    const s = bold ? 'font-weight:600;' : '';
+    const bg = bold ? 'background:rgba(34,211,238,.05);border-radius:6px;' : '';
+    return `<div class="model-row" style="${bg}">
+      <div style="${s}color:${bold?'var(--text)':'#94a3b8'};font-size:12px">${badge} ${label}</div>
+      <div class="text-center" style="${s}color:var(--cyan)">${fmt(m.winA)}</div>
+      <div class="text-center" style="${s}color:#94a3b8">${fmt(m.draw)}</div>
+      <div class="text-center" style="${s}color:var(--amber)">${fmt(m.winB)}</div>
+    </div>`;
+  }).join('');
+
+  // Detail bars — show power relative to [0, 1] scale (values are in ~0.5–1.1 range)
+  const renderDetail = (elId, pwr, cond, formAtk, formDef, tac, color) => {
     const items = [
-      { label: '공격 지수', val: atk },
-      { label: '수비 지수', val: def },
-      { label: '컨디션 지수', val: cond },
+      { label: '공격 지수', val: pwr.atk, note: pwr.atk.toFixed(3) },
+      { label: '수비 지수', val: pwr.def, note: pwr.def.toFixed(3) },
+      { label: '컨디션',    val: cond,    note: (cond * 10).toFixed(2) + ' / 10' },
+      { label: '공격 폼',   val: formAtk, note: (formAtk * 100).toFixed(0) + '%' },
+      { label: '수비 폼',   val: 1 - formDef, note: (formDef * 100).toFixed(0) + '% 실점률' },
     ];
     document.getElementById(elId).innerHTML =
       items.map(it => {
-        const pct = Math.min(100, it.val * 100);
+        const pct = Math.round(clamp(it.val) * 100);
         return `<div>
           <div class="flex justify-between text-xs mb-1">
             <span>${it.label}</span>
-            <span style="color:${color}">${it.val.toFixed(3)}</span>
+            <span style="color:${color}">${it.note}</span>
           </div>
           <div class="w-full h-2 rounded-full" style="background:#1e2a3a">
-            <div class="h-full rounded-full" style="width:${pct}%;background:${color};transition:width 0.5s"></div>
+            <div class="h-full rounded-full transition-all"
+              style="width:${pct}%;background:${color}"></div>
           </div>
         </div>`;
       }).join('') +
-      `<div class="mt-2 text-xs p-2 rounded" style="background:#1e2a3a;color:#64748b">
-        전술: <span style="color:${color}">${TACTIC[tac].label}</span> ·
-        홈/어웨이: <span style="color:${color}">${S.venue==='home'?'홈':S.venue==='away'?'어웨이':'중립'}</span>
+      `<div class="mt-2 text-xs p-2 rounded" style="background:#1e2a3a;color:var(--muted)">
+        전술: <span style="color:${color}">${TACTIC[tac].label}</span>
       </div>`;
   };
 
-  renderDetail('detailA', aAtk, aDef, aCond, S.tacticA, 'var(--cyan)');
-  renderDetail('detailB', bAtk, bDef, bCond, S.tacticB, 'var(--amber)');
+  renderDetail('detailA', aP, aCond, aP.formAtk, aP.formDef, S.tacticA, 'var(--cyan)');
+  renderDetail('detailB', bP, bCond, bP.formAtk, bP.formDef, S.tacticB, 'var(--amber)');
 
-  // Radar charts (delayed for DOM paint)
+  // Radar charts — all four axes are now cleanly in [0,1]
   requestAnimationFrame(() => {
-    const formNormA = Math.min(1, aFormAtk / 0.6);
-    const formNormB = Math.min(1, bFormAtk / 0.6);
-    drawRadar('radarA', [Math.min(1,aAtk), Math.min(1,aDef), aCond, formNormA], 'cyan', nameA);
-    drawRadar('radarB', [Math.min(1,bAtk), Math.min(1,bDef), bCond, formNormB], 'amber', nameB);
+    drawRadar('radarA', [clamp(aP.atk), clamp(aP.def), aCond, aP.formAtk], 'cyan',  nameA);
+    drawRadar('radarB', [clamp(bP.atk), clamp(bP.def), bCond, bP.formAtk], 'amber', nameB);
   });
 }
 
-// ── Radar chart (Canvas) ───────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+//  RADAR CHART  (Canvas)
+// ════════════════════════════════════════════════════════════════════
 function drawRadar(id, vals, colorKey, teamName) {
   const canvas = document.getElementById(id);
-  const ctx = canvas.getContext('2d');
+  const ctx    = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
-  const cx = W/2, cy = H/2;
-  const R = Math.min(W,H)/2 - 42;
-  const AXES = ['공격력','수비력','컨디션','폼'];
-  const N = AXES.length;
-  const CLR = colorKey==='cyan' ? '#22d3ee' : '#f59e0b';
-  const FILL = colorKey==='cyan' ? 'rgba(34,211,238,0.15)' : 'rgba(245,158,11,0.15)';
+  const cx = W / 2, cy = H / 2;
+  const R  = Math.min(W, H) / 2 - 42;
+  const AXES = ['공격력', '수비력', '컨디션', '폼'];
+  const N    = AXES.length;
+  const CLR  = colorKey === 'cyan' ? '#22d3ee' : '#f59e0b';
+  const FILL = colorKey === 'cyan' ? 'rgba(34,211,238,.15)' : 'rgba(245,158,11,.15)';
 
-  ctx.clearRect(0,0,W,H);
+  ctx.clearRect(0, 0, W, H);
 
   // Grid rings
-  for (let ring=1; ring<=5; ring++) {
-    const r = R/5*ring;
+  for (let ring = 1; ring <= 5; ring++) {
+    const r = R / 5 * ring;
     ctx.beginPath();
-    for (let i=0; i<N; i++) {
-      const a = Math.PI*2/N*i - Math.PI/2;
-      const x = cx + r*Math.cos(a), y = cy + r*Math.sin(a);
-      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    for (let i = 0; i < N; i++) {
+      const a = Math.PI * 2 / N * i - Math.PI / 2;
+      const x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
     }
     ctx.closePath();
-    ctx.strokeStyle = ring===5 ? '#2d3f55' : '#1a2236';
-    ctx.lineWidth = ring===5 ? 1.5 : 1;
+    ctx.strokeStyle = ring === 5 ? '#2d3f55' : '#1a2236';
+    ctx.lineWidth   = ring === 5 ? 1.5 : 1;
     ctx.stroke();
   }
 
-  // Axis lines
-  for (let i=0; i<N; i++) {
-    const a = Math.PI*2/N*i - Math.PI/2;
+  // Axis spokes
+  for (let i = 0; i < N; i++) {
+    const a = Math.PI * 2 / N * i - Math.PI / 2;
     ctx.beginPath();
-    ctx.moveTo(cx,cy);
-    ctx.lineTo(cx+R*Math.cos(a), cy+R*Math.sin(a));
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a));
     ctx.strokeStyle = '#1e2a3a';
-    ctx.lineWidth = 1;
+    ctx.lineWidth   = 1;
     ctx.stroke();
   }
 
-  // Labels
+  // Axis labels
+  ctx.font      = 'bold 12px Segoe UI';
+  ctx.fillStyle = '#94a3b8';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.font = 'bold 12px Segoe UI';
-  ctx.fillStyle = '#94a3b8';
-  for (let i=0; i<N; i++) {
-    const a = Math.PI*2/N*i - Math.PI/2;
-    ctx.fillText(AXES[i], cx+(R+24)*Math.cos(a), cy+(R+24)*Math.sin(a));
+  for (let i = 0; i < N; i++) {
+    const a = Math.PI * 2 / N * i - Math.PI / 2;
+    ctx.fillText(AXES[i], cx + (R + 24) * Math.cos(a), cy + (R + 24) * Math.sin(a));
   }
 
   // Data polygon
-  const clamped = vals.map(v => Math.min(1, Math.max(0, v||0)));
+  const v = vals.map(x => clamp(x || 0));
   ctx.beginPath();
-  for (let i=0; i<N; i++) {
-    const a = Math.PI*2/N*i - Math.PI/2;
-    const r = R*clamped[i];
-    const x = cx+r*Math.cos(a), y = cy+r*Math.sin(a);
-    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  for (let i = 0; i < N; i++) {
+    const a = Math.PI * 2 / N * i - Math.PI / 2;
+    const r = R * v[i];
+    i === 0 ? ctx.moveTo(cx + r * Math.cos(a), cy + r * Math.sin(a))
+            : ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
   }
   ctx.closePath();
-  ctx.fillStyle = FILL;
+  ctx.fillStyle   = FILL;
   ctx.fill();
   ctx.strokeStyle = CLR;
-  ctx.lineWidth = 2.5;
+  ctx.lineWidth   = 2.5;
   ctx.stroke();
 
-  // Data points + value labels
-  for (let i=0; i<N; i++) {
-    const a = Math.PI*2/N*i - Math.PI/2;
-    const r = R*clamped[i];
-    const x = cx+r*Math.cos(a), y = cy+r*Math.sin(a);
+  // Data point dots + value labels
+  for (let i = 0; i < N; i++) {
+    const a = Math.PI * 2 / N * i - Math.PI / 2;
+    const r = R * v[i];
+    const x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
     ctx.beginPath();
-    ctx.arc(x,y,4,0,Math.PI*2);
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
     ctx.fillStyle = CLR;
     ctx.fill();
 
-    // value near point
-    ctx.font = '10px Segoe UI';
+    ctx.font      = '10px Segoe UI';
     ctx.fillStyle = '#f1f5f9';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    const ox = 12*Math.cos(a), oy = 12*Math.sin(a);
-    ctx.fillText(Math.round(clamped[i]*100), x+ox, y+oy);
+    ctx.fillText(Math.round(v[i] * 100), x + 12 * Math.cos(a), y + 12 * Math.sin(a));
   }
 }
 
-// ── Init ───────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════════════════════
 updateCond('a');
 updateCond('b');
 </script>
